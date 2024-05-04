@@ -1,0 +1,58 @@
+class Disparo {
+    field int x, y;
+    field int size;
+    field int velocidad;
+    field int direccion;
+
+    constructor Disparo new(int xx, int yy, int velocidad_, int direccion_){
+        let x = xx;
+        let y = yy;
+        let velocidad = velocidad_;
+        let direccion = direccion_;
+        let size = 2;
+
+        do draw();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw() {
+       if (velocidad > 0){
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, y, x + size, y + size);
+       }
+        return;
+    }
+    method void borrar(){ 
+        if (velocidad > 0){
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x + size, y + size);
+        }
+        return;
+    }
+    
+
+    method void disparar() {
+        if (y > 10) {
+            do Screen.setColor(false);
+            do Screen.drawRectangle(x, y, x + size, y + size);
+            let y = y - 2;
+            do Screen.setColor(true);
+            do Screen.drawRectangle(x, y, x + size, y + size);
+        }
+		else {
+			do dispose();
+		}
+        return;
+    }
+
+
+
+
+
+
+}
