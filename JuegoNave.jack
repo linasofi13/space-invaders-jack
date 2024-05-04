@@ -170,6 +170,7 @@ class JuegoNave{
     method void run() {
         var char tecla;
         var boolean exit;
+        var Disparo disparo; 
         let exit = false;
         
         while (~exit){
@@ -195,7 +196,9 @@ class JuegoNave{
                 let direccion = 4;
             }
             if (tecla = 32){ // presionar espacio para disparar
-                do figura.disparar();
+                do figura.realizarDisparo();
+                let disparo = figura.getDisparo();
+                do disparo.disparar();
             }
 
             while (~(tecla = 0)) {

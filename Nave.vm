@@ -168,7 +168,7 @@ call Sys.wait 1
 pop temp 0
 push constant 0
 return
-function Nave.disparar 1
+function Nave.realizarDisparo 1
 push argument 0
 pop pointer 0
 push this 2

@@ -381,7 +381,23 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function JuegoNave.run 2
+function JuegoNave.disparoCamino 0
+push argument 0
+pop pointer 0
+push argument 1
+call Disparo.getY 1
+push constant 11
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+call Disparo.dispose 1
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function JuegoNave.run 3
 push argument 0
 pop pointer 0
 push constant 0
@@ -457,7 +473,13 @@ if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
 push this 0
-call Nave.disparar 1
+call Nave.realizarDisparo 1
+pop temp 0
+push this 0
+call Nave.getDisparo 1
+pop local 2
+push local 2
+call Disparo.disparar 1
 pop temp 0
 label IF_FALSE5
 label WHILE_EXP2

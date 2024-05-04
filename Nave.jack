@@ -59,7 +59,7 @@ class Nave {
         return;
     }
 
- method void disparar() {
+ method void realizarDisparo() {
 		var int posicion_x;
 		let posicion_x = (size + ancho)/2;
         let disparo = Disparo.new(x + posicion_x);
