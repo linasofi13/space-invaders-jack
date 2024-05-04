@@ -34,11 +34,9 @@ class Nave {
     method void moverIzquierda() {
         if (x > 1) {
             do Screen.setColor(false);
-            //do Screen.drawRectangle(x, y, x + size, y + size);
 			do Screen.drawRectangle(x, y, x + size + ancho, y + size);
             let x = x - 2;
             do Screen.setColor(true);
-            //do Screen.drawRectangle(x, y, x + size, y + size);
 			do Screen.drawRectangle(x, y, x + size + ancho, y + size);
         }
 		do Sys.wait(4);
@@ -48,11 +46,9 @@ class Nave {
     method void moverDerecha() {
         if ((x + size) < 470) {
             do Screen.setColor(false);
-           // do Screen.drawRectangle(x, y, x + size, y + size);
             do Screen.drawRectangle(x, y, x + size + ancho, y + size);
             let x = x + 2;
             do Screen.setColor(true);
-            //do Screen.drawRectangle(x, y, x + size, y + size);
 			do Screen.drawRectangle(x, y, x + size + ancho, y + size);
         }
 		do Sys.wait(4);
