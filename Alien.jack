@@ -96,6 +96,7 @@ class Alien{
         }
         return;
     } */
+
     method int getX(){
         return x;
     }
@@ -121,6 +122,19 @@ class Alien{
         do draw();
         return;
     }
+    method void movement(){
+        if (direccion = 1 ){
+            do borrar();
+            let x = x + 2;
+            do draw();
+        }else{
+            do borrar();
+            let x = x - 2;
+            do draw();
+
+        }
+        return;
+    }
     method void mover_eje_y(){
         do borrar();
         let y = y + 10;
@@ -129,7 +143,7 @@ class Alien{
     }
     method void mover_eje_x_izquierda(){
         do borrar();
-        let x = x - 10;
+        let x = x - 2;
         do draw();
         return;
     }

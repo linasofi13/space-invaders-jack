@@ -356,6 +356,40 @@ call Alien.draw 1
 pop temp 0
 push constant 0
 return
+function Alien.movement 0
+push argument 0
+pop pointer 0
+push this 4
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Alien.borrar 1
+pop temp 0
+push this 0
+push constant 2
+add
+pop this 0
+push pointer 0
+call Alien.draw 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call Alien.borrar 1
+pop temp 0
+push this 0
+push constant 2
+sub
+pop this 0
+push pointer 0
+call Alien.draw 1
+pop temp 0
+label IF_END0
+push constant 0
+return
 function Alien.mover_eje_y 0
 push argument 0
 pop pointer 0
@@ -378,7 +412,7 @@ push pointer 0
 call Alien.borrar 1
 pop temp 0
 push this 0
-push constant 10
+push constant 2
 sub
 pop this 0
 push pointer 0

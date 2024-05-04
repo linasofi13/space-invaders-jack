@@ -75,6 +75,7 @@ class JuegoNave{
         do Sys.wait(5);  //espera 5 seg
         return;
     }
+
     method void moverAlien(){
         var int i;
         var int posicion_x_alien_actual;
@@ -82,12 +83,18 @@ class JuegoNave{
         let i = 0;
         while(i < totalAliens){
             let alien_actual = aliens[i];
+            if(alien_actual.getX() = 496){
+                do alien_actual.cambiarDireccion();
+            }if (alien_actual.getX() = 0){
+                do alien_actual.cambiarDireccion();
+            }
             let posicion_x_alien_actual = alien_actual.getX();
-            do alien_actual.mover_eje_x_derecha();
+            do alien_actual.movement();
             let i = i + 1;
         }
         return;
     }
+
     method void disparoCamino(Disparo disparo){
         if (disparo.getY() < 11) {
             let disparo_bandera = 0;
