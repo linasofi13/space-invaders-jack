@@ -1,0 +1,79 @@
+class Nave {
+    field int x, y; // ubicacion de la nave
+    field int size; // tamaño de la nave
+    field int ancho; 
+    field Disparo disparo;
+
+
+    constructor Nave new(){
+        let x = 230;
+        let y = 230;
+        let size = 10;
+        let ancho = 40;
+        do draw();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw(){
+        do borrar();
+        do Screen.setColor(1);
+        do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+        return;
+    }
+
+    method void borrar(){ 
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+        return;
+    }
+    method void moverIzquierda() {
+        if (x > 1) {
+            do Screen.setColor(false);
+            //do Screen.drawRectangle(x, y, x + size, y + size);
+			do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+            let x = x - 2;
+            do Screen.setColor(true);
+            //do Screen.drawRectangle(x, y, x + size, y + size);
+			do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+        }
+		do Sys.wait(4);
+        return;
+    }
+
+    method void moverDerecha() {
+        if ((x + size) < 470) {
+            do Screen.setColor(false);
+           // do Screen.drawRectangle(x, y, x + size, y + size);
+            do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+            let x = x + 2;
+            do Screen.setColor(true);
+            //do Screen.drawRectangle(x, y, x + size, y + size);
+			do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+        }
+		do Sys.wait(4);
+        return;
+    }
+method void generarDisparo(){
+    var int temp;
+    let temp = (size + ancho) / 2;
+    let disparo = Disparo.new(x + temp);
+    return;
+}
+method void moverDisparoArriba(){
+    if (y > 1){
+        let y = y - 1;
+        do generarDisparo();
+    }
+    return;
+}
+method Disparo getDisparo(){
+    return disparo;
+}
+
+
+}

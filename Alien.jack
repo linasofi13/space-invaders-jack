@@ -1,0 +1,137 @@
+class Alien{
+    field int x, y;
+    field int size;
+    field int ancho;
+    field int direccion; // 1 es derecha, 2 es izquierda
+    // field int altura;
+
+    constructor Alien new(int xx, int yy, int size_alien){
+        let x = xx;
+        let y = yy;
+        let size = size_alien;
+        let direccion = 1; // empieza yendo a la derecha
+        //let altura = 10;
+        do draw();
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+    method void draw(){
+        var int memAddress;
+		let memAddress = 16384 + Conversor.conversor_xy_screen(x, y);
+
+		if((memAddress > 16383) & (memAddress < 24576)){
+        // column 0
+        do Memory.poke(memAddress, 8);
+        do Memory.poke(memAddress +32, -32752);
+        do Memory.poke(memAddress +64, 32736);
+        do Memory.poke(memAddress +96, -32752);
+        do Memory.poke(memAddress +128, 8);
+        do Memory.poke(memAddress +160, 8260);
+        do Memory.poke(memAddress +192, 7);
+        do Memory.poke(memAddress +224, 5);
+        do Memory.poke(memAddress +256, -32739);
+        do Memory.poke(memAddress +288, -16431);
+        do Memory.poke(memAddress +320, -16335);
+        do Memory.poke(memAddress +352, 28896);
+        // column 1
+        do Memory.poke(memAddress +1, 1);
+        do Memory.poke(memAddress +129, 1);
+        do Memory.poke(memAddress +161, 2);
+        do Memory.poke(memAddress +193, 14);
+        do Memory.poke(memAddress +225, 10);
+        do Memory.poke(memAddress +257, 11);
+        do Memory.poke(memAddress +289, 10);
+        do Memory.poke(memAddress +321, 8);
+        }
+        return;
+    }
+    method void borrar(){
+        var int memAddress;
+		let memAddress = 16384 + Conversor.conversor_xy_screen(x, y);
+
+		if((memAddress > 16383) & (memAddress < 24576)){
+        // column 0
+        do Memory.poke(memAddress, 0);
+        do Memory.poke(memAddress +32, 0);
+        do Memory.poke(memAddress +64, 0);
+        do Memory.poke(memAddress +96, 0);
+        do Memory.poke(memAddress +128, 0);
+        do Memory.poke(memAddress +160, 0);
+        do Memory.poke(memAddress +192, 0);
+        do Memory.poke(memAddress +224, 0);
+        do Memory.poke(memAddress +256, 0);
+        do Memory.poke(memAddress +288, 0);
+        do Memory.poke(memAddress +320, 0);
+        do Memory.poke(memAddress +352, 0);
+        // column 1
+        do Memory.poke(memAddress +1, 0);
+        do Memory.poke(memAddress +129, 0);
+        do Memory.poke(memAddress +161, 0);
+        do Memory.poke(memAddress +193, 0);
+        do Memory.poke(memAddress +225, 0);
+        do Memory.poke(memAddress +257, 0);
+        do Memory.poke(memAddress +289, 0);
+        do Memory.poke(memAddress +321, 0);
+        }
+        return;
+    }
+   /* method moverIzquierda(){
+        if ( y > 1 ){
+            do borrar();
+            let x = x - 2;
+            do draw();
+        }
+        return;
+    }
+
+    method moverDerecha(){
+        if ((x + size) < 470){
+            do borrar();
+            let x = x + 2;
+            do draw();
+        }
+        return;
+    } */
+    method int getX(){
+        return x;
+    }
+    method int getY(){
+        return y;
+    }
+    method int getDireccion(){
+        return direccion;
+    }
+
+    method void cambiarDireccion() {
+		if (direccion = 1) {
+			let direccion = 2;
+		}
+		else {
+			let direccion = 1;
+		}
+		return;
+	}
+    method void mover_eje_x_derecha(){
+        do borrar();
+        let x = x + 2;
+        do draw();
+        return;
+    }
+    method void mover_eje_y(){
+        do borrar();
+        let y = y + 10;
+        do draw();
+        return;
+    }
+    method void mover_eje_x_izquierda(){
+        do borrar();
+        let x = x - 10;
+        do draw();
+        return;
+    }
+
+}
