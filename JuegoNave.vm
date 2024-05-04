@@ -1,5 +1,5 @@
 function JuegoNave.new 0
-push constant 7
+push constant 8
 call Memory.alloc 1
 pop pointer 0
 call Nave.new 0
@@ -391,9 +391,6 @@ push local 1
 not
 not
 if-goto WHILE_END0
-push pointer 0
-call JuegoNave.moverAliens 1
-pop temp 0
 label WHILE_EXP1
 push local 0
 push constant 0
@@ -460,7 +457,7 @@ if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
 push this 0
-call Nave.moverDisparoArriba 1
+call Nave.disparar 1
 pop temp 0
 label IF_FALSE5
 label WHILE_EXP2

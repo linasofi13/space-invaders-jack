@@ -58,22 +58,15 @@ class Nave {
 		do Sys.wait(4);
         return;
     }
-method void generarDisparo(){
-    var int temp;
-    let temp = (size + ancho) / 2;
-    let disparo = Disparo.new(x + temp);
-    return;
-}
-method void moverDisparoArriba(){
-    if (y > 1){
-        let y = y - 1;
-        do generarDisparo();
+
+ method void disparar() {
+		var int posicion_x;
+		let posicion_x = (size + ancho)/2;
+        let disparo = Disparo.new(x + posicion_x);
+        return;
     }
-    return;
-}
-method Disparo getDisparo(){
-    return disparo;
-}
 
-
+    method Disparo getDisparo() {
+        return disparo;
+    }
 }

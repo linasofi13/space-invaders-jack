@@ -4,11 +4,11 @@ class Disparo {
     field int velocidad;
     field int direccion;
 
-    constructor Disparo new(int xx, int yy, int velocidad_, int direccion_){
+    constructor Disparo new(int xx){
         let x = xx;
-        let y = yy;
-        let velocidad = velocidad_;
-        let direccion = direccion_;
+        let y = 229;
+        // let velocidad = velocidad_;
+        // let direccion = direccion_;
         let size = 2;
 
         do draw();
@@ -16,22 +16,28 @@ class Disparo {
     }
 
     method void dispose() {
-        do Memory.deAlloc(this);
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x + size, y + size);
+	    do Memory.deAlloc(this);
         return;
     }
 
     method void draw() {
-       if (velocidad > 0){
         do Screen.setColor(true);
         do Screen.drawRectangle(x, y, x + size, y + size);
-       }
         return;
     }
+    
+	method int getX() {
+		return x;
+	}
+    method int getY() {
+		return y;
+	}
+	
     method void borrar(){ 
-        if (velocidad > 0){
         do Screen.setColor(false);
         do Screen.drawRectangle(x, y, x + size, y + size);
-        }
         return;
     }
     

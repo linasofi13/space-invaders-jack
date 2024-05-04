@@ -168,7 +168,7 @@ call Sys.wait 1
 pop temp 0
 push constant 0
 return
-function Nave.generarDisparo 1
+function Nave.disparar 1
 push argument 0
 pop pointer 0
 push this 2
@@ -182,25 +182,6 @@ push local 0
 add
 call Disparo.new 1
 pop this 4
-push constant 0
-return
-function Nave.moverDisparoArriba 0
-push argument 0
-pop pointer 0
-push this 1
-push constant 1
-gt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 1
-push constant 1
-sub
-pop this 1
-push pointer 0
-call Nave.generarDisparo 1
-pop temp 0
-label IF_FALSE0
 push constant 0
 return
 function Nave.getDisparo 0

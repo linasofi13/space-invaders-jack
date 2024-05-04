@@ -7,6 +7,7 @@ class JuegoNave{
     field int numAliens;
     field int totalAliens;
     field int tiempo;
+    field int sizeNave;
 
     constructor JuegoNave new(){
         let figura = Nave.new();
@@ -159,7 +160,12 @@ class JuegoNave{
         }
         return;
     }
-
+    method void disparoCamino(Disparo disparo){
+        if (disparo.getY() < 11) {
+			do disparo.dispose();
+		}
+		return;
+	}
 
     method void run() {
         var char tecla;
@@ -189,7 +195,7 @@ class JuegoNave{
                 let direccion = 4;
             }
             if (tecla = 32){ // presionar espacio para disparar
-                do figura.moverDisparoArriba();
+                do figura.disparar();
             }
 
             while (~(tecla = 0)) {
