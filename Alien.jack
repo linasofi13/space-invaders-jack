@@ -4,6 +4,7 @@ class Alien{
     field int ancho;
     field int direccion; // 1 es derecha, 2 es izquierda
     // field int altura;
+    field Disparo disparo;
 
     constructor Alien new(int xx, int yy, int size_alien){
         let x = xx;
@@ -104,6 +105,11 @@ class Alien{
         return y;
     }
     method int getDireccion(){
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x + size, y + size);
+        let y = y - 2;
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, y, x + size, y + size);
         return direccion;
     }
 
@@ -116,12 +122,7 @@ class Alien{
 		}
 		return;
 	}
-    method void mover_eje_x_derecha(){
-        do borrar();
-        let x = x + 2;
-        do draw();
-        return;
-    }
+
     method void movement(){
         if (direccion = 1 ){
             do borrar();
@@ -141,10 +142,23 @@ class Alien{
         do draw();
         return;
     }
-    method void mover_eje_x_izquierda(){
-        do borrar();
-        let x = x - 2;
-        do draw();
+
+    method void alienShoot(){
+        var int tempy;
+        let tempy = y;
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
+        while (tempy < 248){
+            do Sys.wait(3);
+            do Screen.setColor(false);
+            do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
+            let tempy = tempy + 2;
+            do Sys.wait(3);
+            do Screen.setColor(true);
+            do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
+        }
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
         return;
     }
 

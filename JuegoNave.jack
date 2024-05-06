@@ -72,7 +72,7 @@ class JuegoNave{
         if (direccion = 4) {
             do figura.moverDerecha();
         }
-        do Sys.wait(5);  //espera 5 seg
+        do Sys.wait(00.1);  //espera 5 seg
         return;
     }
 
@@ -103,10 +103,12 @@ class JuegoNave{
 		return;
 	}
 
+
     method void run() {
         var char tecla;
         var boolean exit;
         var Disparo disparo; 
+        var Alien devuelta;
         let exit = false;
         
         while (~exit){
@@ -151,7 +153,10 @@ class JuegoNave{
                 let disparo = figura.getDisparo();
                 do disparo.disparar();
                 do disparoCamino(disparo);
+                let devuelta = aliens[5];
+                do devuelta.alienShoot();
             }
+
 
             while (~(tecla = 0)) {
                 let tecla = Keyboard.keyPressed();
@@ -161,6 +166,7 @@ class JuegoNave{
                     let disparo = figura.getDisparo();
                     do disparo.disparar();
                     do disparoCamino(disparo);
+
                 }
                 
                 

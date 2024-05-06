@@ -1,5 +1,5 @@
 function Alien.new 0
-push constant 5
+push constant 6
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -321,6 +321,37 @@ return
 function Alien.getDireccion 0
 push argument 0
 pop pointer 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push this 1
+push constant 2
+sub
+pop this 1
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+push this 1
+push this 0
+push this 2
+add
+push this 1
+push this 2
+add
+call Screen.drawRectangle 4
+pop temp 0
 push this 4
 return
 function Alien.cambiarDireccion 0
@@ -339,21 +370,6 @@ label IF_FALSE0
 push constant 1
 pop this 4
 label IF_END0
-push constant 0
-return
-function Alien.mover_eje_x_derecha 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Alien.borrar 1
-pop temp 0
-push this 0
-push constant 2
-add
-pop this 0
-push pointer 0
-call Alien.draw 1
-pop temp 0
 push constant 0
 return
 function Alien.movement 0
@@ -405,18 +421,82 @@ call Alien.draw 1
 pop temp 0
 push constant 0
 return
-function Alien.mover_eje_x_izquierda 0
+function Alien.alienShoot 1
 push argument 0
 pop pointer 0
-push pointer 0
-call Alien.borrar 1
+push this 1
+pop local 0
+push constant 0
+not
+call Screen.setColor 1
 pop temp 0
 push this 0
+push local 0
+push this 0
 push constant 2
-sub
-pop this 0
-push pointer 0
-call Alien.draw 1
+add
+push local 0
+push constant 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+label WHILE_EXP0
+push local 0
+push constant 248
+lt
+not
+if-goto WHILE_END0
+push constant 3
+call Sys.wait 1
+pop temp 0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+push local 0
+push this 0
+push constant 2
+add
+push local 0
+push constant 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+push local 0
+push constant 2
+add
+pop local 0
+push constant 3
+call Sys.wait 1
+pop temp 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 0
+push local 0
+push this 0
+push constant 2
+add
+push local 0
+push constant 2
+add
+call Screen.drawRectangle 4
+pop temp 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push this 0
+push local 0
+push this 0
+push constant 2
+add
+push local 0
+push constant 2
+add
+call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return

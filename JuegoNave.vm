@@ -150,7 +150,7 @@ push this 0
 call Nave.moverDerecha 1
 pop temp 0
 label IF_FALSE1
-push constant 5
+push constant 0
 call Sys.wait 1
 pop temp 0
 push constant 0
@@ -226,7 +226,7 @@ pop temp 0
 label IF_FALSE0
 push constant 0
 return
-function JuegoNave.run 3
+function JuegoNave.run 4
 push argument 0
 pop pointer 0
 push constant 0
@@ -363,6 +363,15 @@ pop temp 0
 push pointer 0
 push local 2
 call JuegoNave.disparoCamino 2
+pop temp 0
+push constant 5
+push this 2
+add
+pop pointer 1
+push that 0
+pop local 3
+push local 3
+call Alien.alienShoot 1
 pop temp 0
 label IF_FALSE9
 label WHILE_EXP2
