@@ -131,12 +131,6 @@ class JuegoNave{
             if (tecla = 81) {  //letra Q  QUIT
                 let exit = true;
             }
-            if (tecla = 131) {  //letra up
-                let direccion = 1;
-            }
-            if (tecla = 133) {  //letra down
-                let direccion = 2;
-            }
             if (tecla = 130) {  //letra left
                 let direccion = 3;
             }

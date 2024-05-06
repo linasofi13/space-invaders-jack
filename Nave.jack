@@ -22,22 +22,26 @@ class Nave {
     method void draw(){
         do borrar();
         do Screen.setColor(1);
+        do Screen.drawRectangle(x + 20, y-10 ,x+30,y-5);
+        do Screen.drawRectangle(x + 5,y-5,x + 45, y);
         do Screen.drawRectangle(x, y, x + size + ancho, y + size);
         return;
     }
 
     method void borrar(){ 
         do Screen.setColor(false);
+        do Screen.drawRectangle(x + 20, y-10 ,x+30,y-5);
+        do Screen.drawRectangle(x + 5,y-5,x + 45, y);
         do Screen.drawRectangle(x, y, x + size + ancho, y + size);
         return;
     }
     method void moverIzquierda() {
         if (x > 1) {
             do Screen.setColor(false);
-			do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+			do borrar();
             let x = x - 2;
             do Screen.setColor(true);
-			do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+			do draw();
         }
 		do Sys.wait(4);
         return;
@@ -46,10 +50,10 @@ class Nave {
     method void moverDerecha() {
         if ((x + size) < 470) {
             do Screen.setColor(false);
-            do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+            do borrar();
             let x = x + 2;
             do Screen.setColor(true);
-			do Screen.drawRectangle(x, y, x + size + ancho, y + size);
+			do draw();
         }
 		do Sys.wait(4);
         return;
