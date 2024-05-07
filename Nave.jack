@@ -5,6 +5,7 @@ class Nave {
     field Disparo disparo;
 
 
+
     constructor Nave new(){
         let x = 230;
         let y = 230;
@@ -35,34 +36,29 @@ class Nave {
         do Screen.drawRectangle(x, y, x + size + ancho, y + size);
         return;
     }
-    method void moverIzquierda() {
-        if (x > 1) {
-            do Screen.setColor(false);
-			do borrar();
-            let x = x - 2;
-            do Screen.setColor(true);
-			do draw();
-        }
-		do Sys.wait(4);
-        return;
-    }
 
-    method void moverDerecha() {
-        if ((x + size) < 470) {
+
+    method void movement(int dir){
+        if ((dir = 132) & ((x + size) < 470)){
             do Screen.setColor(false);
             do borrar();
             let x = x + 2;
             do Screen.setColor(true);
-			do draw();
+            do draw();
+        }if ((dir = 130) & (x > 1)){
+            do Screen.setColor(false);
+            do borrar();
+            let x = x - 2;
+            do Screen.setColor(true);
+            do draw();
         }
-		do Sys.wait(4);
         return;
     }
 
     method void realizarDisparo() {
 		var int posicion_x;
 		let posicion_x = (size + ancho)/2;
-        let disparo = Disparo.new(x + posicion_x);
+        let disparo = Disparo.new(x + posicion_x, y - 15);
         return;
     }
 

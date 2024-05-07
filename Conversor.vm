@@ -1,9 +1,0 @@
-function Conversor.conversor_xy_screen 0
-push argument 1
-push constant 32
-call Math.multiply 2
-push argument 0
-push constant 16
-call Math.divide 2
-add
-return
