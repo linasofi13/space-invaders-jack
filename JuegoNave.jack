@@ -15,7 +15,7 @@ class JuegoNave{
         let direccion = 0;
         let numAliens = 5;
         let sizeAliens = 100;
-        let totalAliens = 25;
+        let totalAliens = 5;
         let aliens = Array.new(totalAliens);
         let disparo_bandera = 0;
         

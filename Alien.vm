@@ -466,9 +466,6 @@ push local 0
 push constant 2
 add
 pop local 0
-push constant 3
-call Sys.wait 1
-pop temp 0
 push constant 0
 not
 call Screen.setColor 1

@@ -10,7 +10,7 @@ push constant 5
 pop this 4
 push constant 100
 pop this 3
-push constant 25
+push constant 5
 pop this 5
 push this 5
 call Array.new 1

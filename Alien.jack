@@ -153,7 +153,6 @@ class Alien{
             do Screen.setColor(false);
             do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
             let tempy = tempy + 2;
-            do Sys.wait(3);
             do Screen.setColor(true);
             do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
         }
