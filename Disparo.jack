@@ -4,14 +4,12 @@ class Disparo {
     field int velocidad;
     field int direccion;
 
-    constructor Disparo new(int xx){
+    constructor Disparo new(int xx,int yy){
         let x = xx;
-        let y = 229;
+        let y = yy;
         // let velocidad = velocidad_;
         // let direccion = direccion_;
-        let size = 2;
-
-        do draw();
+        let size = 4;
         return this;
     }
 
@@ -46,7 +44,23 @@ class Disparo {
         if (y > 10) {
             do Screen.setColor(false);
             do Screen.drawRectangle(x, y, x + size, y + size);
-            let y = y - 2;
+            let y = y - 5;
+            do Screen.setColor(true);
+            do Screen.drawRectangle(x, y, x + size, y + size);
+        }
+		else {
+			do dispose();
+		}
+        return;
+    }
+
+
+
+    method void alienShoot(){
+        if (y < 243){
+            do Screen.setColor(false);
+            do Screen.drawRectangle(x, y, x + size, y + size);
+            let y = y + 5;
             do Screen.setColor(true);
             do Screen.drawRectangle(x, y, x + size, y + size);
         }

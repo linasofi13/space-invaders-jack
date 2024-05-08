@@ -33,6 +33,32 @@ push constant 1
 call Screen.setColor 1
 pop temp 0
 push this 0
+push constant 20
+add
+push this 1
+push constant 10
+sub
+push this 0
+push constant 30
+add
+push this 1
+push constant 5
+sub
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push constant 5
+add
+push this 1
+push constant 5
+sub
+push this 0
+push constant 45
+add
+push this 1
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
 push this 1
 push this 0
 push this 2
@@ -53,6 +79,32 @@ push constant 0
 call Screen.setColor 1
 pop temp 0
 push this 0
+push constant 20
+add
+push this 1
+push constant 10
+sub
+push this 0
+push constant 30
+add
+push this 1
+push constant 5
+sub
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
+push constant 5
+add
+push this 1
+push constant 5
+sub
+push this 0
+push constant 45
+add
+push this 1
+call Screen.drawRectangle 4
+pop temp 0
+push this 0
 push this 1
 push this 0
 push this 2
@@ -66,106 +118,67 @@ call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
-function Nave.moverIzquierda 0
+function Nave.movement 0
 push argument 0
 pop pointer 0
+push argument 1
+push constant 132
+eq
 push this 0
-push constant 1
-gt
+push this 2
+add
+push constant 470
+lt
+and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push this 0
-push this 1
-push this 0
-push this 2
-add
-push this 3
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
+push pointer 0
+call Nave.borrar 1
 pop temp 0
 push this 0
-push constant 2
+push constant 10
+add
+pop this 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call Nave.draw 1
+pop temp 0
+label IF_FALSE0
+push argument 1
+push constant 130
+eq
+push this 0
+push constant 1
+gt
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push pointer 0
+call Nave.borrar 1
+pop temp 0
+push this 0
+push constant 10
 sub
 pop this 0
 push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push this 0
-push this 1
-push this 0
-push this 2
-add
-push this 3
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
+push pointer 0
+call Nave.draw 1
 pop temp 0
-label IF_FALSE0
-push constant 4
-call Sys.wait 1
-pop temp 0
-push constant 0
-return
-function Nave.moverDerecha 0
-push argument 0
-pop pointer 0
-push this 0
-push this 2
-add
-push constant 470
-lt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 0
-push this 2
-add
-push this 3
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-push this 0
-push constant 2
-add
-pop this 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 0
-push this 2
-add
-push this 3
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-label IF_FALSE0
-push constant 4
-call Sys.wait 1
-pop temp 0
+label IF_FALSE1
 push constant 0
 return
 function Nave.realizarDisparo 1
@@ -180,7 +193,10 @@ pop local 0
 push this 0
 push local 0
 add
-call Disparo.new 1
+push this 1
+push constant 15
+sub
+call Disparo.new 2
 pop this 4
 push constant 0
 return
