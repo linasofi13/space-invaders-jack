@@ -9,7 +9,7 @@ class Disparo {
         let y = yy;
         // let velocidad = velocidad_;
         // let direccion = direccion_;
-        let size = 2;
+        let size = 4;
         return this;
     }
 
@@ -44,7 +44,7 @@ class Disparo {
         if (y > 10) {
             do Screen.setColor(false);
             do Screen.drawRectangle(x, y, x + size, y + size);
-            let y = y - 2;
+            let y = y - 5;
             do Screen.setColor(true);
             do Screen.drawRectangle(x, y, x + size, y + size);
         }
@@ -60,7 +60,7 @@ class Disparo {
         if (y < 243){
             do Screen.setColor(false);
             do Screen.drawRectangle(x, y, x + size, y + size);
-            let y = y + 2;
+            let y = y + 5;
             do Screen.setColor(true);
             do Screen.drawRectangle(x, y, x + size, y + size);
         }

@@ -42,13 +42,13 @@ class Nave {
         if ((dir = 132) & ((x + size) < 470)){
             do Screen.setColor(false);
             do borrar();
-            let x = x + 2;
+            let x = x + 10;
             do Screen.setColor(true);
             do draw();
         }if ((dir = 130) & (x > 1)){
             do Screen.setColor(false);
             do borrar();
-            let x = x - 2;
+            let x = x - 10;
             do Screen.setColor(true);
             do draw();
         }

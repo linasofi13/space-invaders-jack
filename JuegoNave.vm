@@ -27,7 +27,7 @@ push argument 0
 pop pointer 0
 push constant 100
 pop local 0
-push constant 10
+push constant 40
 pop local 1
 push constant 0
 pop local 2
@@ -41,8 +41,7 @@ not
 if-goto WHILE_END0
 push local 0
 push local 1
-push this 3
-call Alien.new 3
+call Alien.new 2
 pop local 4
 push local 2
 push this 2
@@ -53,7 +52,7 @@ pop pointer 1
 push temp 0
 pop that 0
 push local 0
-push constant 70
+push constant 50
 add
 pop local 0
 push local 2
@@ -67,7 +66,7 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push local 1
-push constant 35
+push constant 25
 add
 pop local 1
 push constant 100
@@ -80,7 +79,7 @@ if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push local 1
-push constant 35
+push constant 25
 add
 pop local 1
 push constant 100
@@ -93,7 +92,7 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push local 1
-push constant 35
+push constant 25
 add
 pop local 1
 push constant 100
@@ -106,7 +105,7 @@ if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push local 1
-push constant 35
+push constant 25
 add
 pop local 1
 push constant 100
@@ -166,7 +165,7 @@ pop temp 0
 label IF_FALSE0
 push local 2
 call Alien.getX 1
-push constant 10
+push constant 15
 lt
 if-goto IF_TRUE1
 goto IF_FALSE1

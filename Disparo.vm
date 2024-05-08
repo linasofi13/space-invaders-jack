@@ -6,7 +6,7 @@ push argument 0
 pop this 0
 push argument 1
 pop this 1
-push constant 2
+push constant 4
 pop this 2
 push pointer 0
 return
@@ -101,7 +101,7 @@ add
 call Screen.drawRectangle 4
 pop temp 0
 push this 1
-push constant 2
+push constant 5
 sub
 pop this 1
 push constant 0
@@ -149,7 +149,7 @@ add
 call Screen.drawRectangle 4
 pop temp 0
 push this 1
-push constant 2
+push constant 5
 add
 pop this 1
 push constant 0

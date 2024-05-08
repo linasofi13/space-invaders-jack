@@ -25,31 +25,31 @@ class JuegoNave{
     method void generarAliens(){
         var int x, y, i, j;
         var Alien alien;
-        let x = 100; // posicion inicial del primer alien 
-        let y = 10;
+        let x = 80; // posicion inicial del primer alien 
+        let y = 40;
         let i = 0;
-        let j = 1;
+        let j = 1;  
         while(i < totalAliens){
-            let alien = Alien.new(x, y, sizeAliens);
+            let alien = Alien.new(x, y);
             let aliens[i] = alien;
 
-            let x = x + 70; // imprimir el siguiente alien 70 espacios a la derecha
+            let x = x + 50; // imprimir el siguiente alien 70 espacios a la derecha
             let i = i + 1;
            
             if (i = 5){
-                let y = y + 35;
+                let y = y + 25;
                 let x = 100;
             }
             if (i = 10){
-                let y = y + 35;
+                let y = y + 25;
                 let x = 100;
             }
             if(i = 15){
-                let y = y + 35;
+                let y = y + 25;
                 let x = 100;
             }
             if(i = 20){
-                let y = y + 35;
+                let y = y + 25;
                 let x = 100;
             }
         }
@@ -78,7 +78,7 @@ class JuegoNave{
             let alien_actual = aliens[i];
             if(alien_actual.getX() > 450){
                 do alien_actual.cambiarDireccion();
-            }if (alien_actual.getX() < 10){
+            }if (alien_actual.getX() < 15){
                 do alien_actual.cambiarDireccion();
             }
             let posicion_x_alien_actual = alien_actual.getX();

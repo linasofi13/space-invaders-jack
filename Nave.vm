@@ -140,7 +140,7 @@ push pointer 0
 call Nave.borrar 1
 pop temp 0
 push this 0
-push constant 2
+push constant 10
 add
 pop this 0
 push constant 0
@@ -168,7 +168,7 @@ push pointer 0
 call Nave.borrar 1
 pop temp 0
 push this 0
-push constant 2
+push constant 10
 sub
 pop this 0
 push constant 0
