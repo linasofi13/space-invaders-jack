@@ -1,0 +1,56 @@
+class Shoot {
+    field int x, y;
+    field int size;
+
+    constructor Shoot new(int posX,int PosY){
+        let x = posX;
+        let y = PosY;
+        let size = 4;
+        return this;
+    }
+
+    method void dispose() {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x + size, y + size);
+	    do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw() {
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x, y, x + size, y + size);
+        return;
+    }
+    
+    method void erase(){ 
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x + size, y + size);
+        return;
+    }
+    
+	method int getX() {
+		return x;
+	}
+    method int getY() {
+		return y;
+	}
+	    
+    method void shoot(int entity){
+        if ((y > 10)&(y < 243)){
+            do Screen.setColor(false);
+            do Screen.drawRectangle(x, y, x + size, y + size);
+            if (entity = 1){
+                let y = y - 5;
+            }if (entity = 2){
+                let y = y + 5;
+            }
+            do Screen.setColor(true);
+            do Screen.drawRectangle(x, y, x + size, y + size);
+        }else{
+            do dispose();
+        }
+        return;
+    }
+
+
+}

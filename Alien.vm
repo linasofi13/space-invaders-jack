@@ -1,5 +1,5 @@
 function Alien.new 0
-push constant 6
+push constant 4
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -7,7 +7,7 @@ pop this 0
 push argument 1
 pop this 1
 push constant 1
-pop this 4
+pop this 2
 push pointer 0
 call Alien.draw 1
 pop temp 0
@@ -18,51 +18,6 @@ push argument 0
 pop pointer 0
 push pointer 0
 call Memory.deAlloc 1
-pop temp 0
-push constant 0
-return
-function Alien.drawNuevo 0
-push argument 0
-pop pointer 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-push constant 10
-sub
-push this 1
-push constant 10
-sub
-push this 0
-push constant 10
-add
-push this 1
-push constant 10
-add
-call Screen.drawRectangle 4
-pop temp 0
-push constant 0
-return
-function Alien.borrarNuevo 0
-push argument 0
-pop pointer 0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push this 0
-push constant 10
-sub
-push this 1
-push constant 10
-sub
-push this 0
-push constant 10
-add
-push this 1
-push constant 10
-add
-call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
@@ -532,7 +487,7 @@ pop temp 0
 label IF_FALSE0
 push constant 0
 return
-function Alien.borrar 1
+function Alien.erase 1
 push argument 0
 pop pointer 0
 push constant 16384
@@ -1001,37 +956,37 @@ return
 function Alien.getDireccion 0
 push argument 0
 pop pointer 0
-push this 4
+push this 2
 return
 function Alien.cambiarDireccion 0
 push argument 0
 pop pointer 0
-push this 4
+push this 2
 push constant 1
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push constant 2
-pop this 4
+pop this 2
 goto IF_END0
 label IF_FALSE0
 push constant 1
-pop this 4
+pop this 2
 label IF_END0
 push constant 0
 return
 function Alien.movement 0
 push argument 0
 pop pointer 0
-push this 4
+push this 2
 push constant 1
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push pointer 0
-call Alien.borrar 1
+call Alien.erase 1
 pop temp 0
 push this 0
 push constant 2
@@ -1043,7 +998,7 @@ pop temp 0
 goto IF_END0
 label IF_FALSE0
 push pointer 0
-call Alien.borrar 1
+call Alien.erase 1
 pop temp 0
 push this 0
 push constant 2
@@ -1055,17 +1010,17 @@ pop temp 0
 label IF_END0
 push constant 0
 return
-function Alien.realizarDisparoAlien 0
+function Alien.createShoot 0
 push argument 0
 pop pointer 0
 push this 0
 push this 1
-call Disparo.new 2
-pop this 5
+call Shoot.new 2
+pop this 3
 push constant 0
 return
-function Alien.getDisparo 0
+function Alien.getShoot 0
 push argument 0
 pop pointer 0
-push this 5
+push this 3
 return

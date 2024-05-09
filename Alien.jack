@@ -1,34 +1,18 @@
 class Alien{
     field int x, y;
-    field int size;
-    field int ancho;
-    field int direccion; // 1 es derecha, 2 es izquierda
-    // field int altura;
-    field Disparo disparoAlien;
+    field int direccion; 
+    field Shoot alienShoots;
 
-    constructor Alien new(int xx, int yy){
-        let x = xx;
-        let y = yy;
-        let direccion = 1; // empieza yendo a la derecha
-        //let altura = 10;
+    constructor Alien new(int posX, int posY){
+        let x = posX;
+        let y = posY;
+        let direccion = 1;
         do draw();
         return this;
     }
 
     method void dispose() {
         do Memory.deAlloc(this);
-        return;
-    }
-
-    method void drawNuevo(){
-        do Screen.setColor(true);
-        do Screen.drawRectangle(x-10 , y-10 ,x+10,y+10);
-        return;
-    }
-
-    method void borrarNuevo(){
-        do Screen.setColor(false);
-        do Screen.drawRectangle(x-10 , y-10 ,x+10,y+10);
         return;
     }
 
@@ -116,7 +100,7 @@ class Alien{
     }
 
 
-    method void borrar() {
+    method void erase() {
 	    var int memAddress;
 	    let memAddress = 16384 + (y*32) + (x/16);
 	    if((memAddress > 16383) & (memAddress < 24576)){
@@ -223,24 +207,24 @@ class Alien{
 
     method void movement(){
         if (direccion = 1 ){
-            do borrar();
+            do erase();
             let x = x + 2;
             do draw();
             }else{
-            do borrar();
+            do erase();
             let x = x - 2;
             do draw();
         }
         return;
     }
 
-    method void realizarDisparoAlien() {
-        let disparoAlien = Disparo.new(x,y);
+    method void createShoot() {
+        let alienShoots = Shoot.new(x,y);
         return;
     }
 
-    method Disparo getDisparo() {
-        return disparoAlien;
+    method Shoot getShoot() {
+        return alienShoots;
     }
 
 }
