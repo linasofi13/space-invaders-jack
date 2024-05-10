@@ -953,12 +953,12 @@ push argument 0
 pop pointer 0
 push this 1
 return
-function Alien.getDireccion 0
+function Alien.getDirection 0
 push argument 0
 pop pointer 0
 push this 2
 return
-function Alien.cambiarDireccion 0
+function Alien.changeDirection 0
 push argument 0
 pop pointer 0
 push this 2
@@ -989,7 +989,7 @@ push pointer 0
 call Alien.erase 1
 pop temp 0
 push this 0
-push constant 2
+push constant 4
 add
 pop this 0
 push pointer 0
@@ -1001,7 +1001,7 @@ push pointer 0
 call Alien.erase 1
 pop temp 0
 push this 0
-push constant 2
+push constant 4
 sub
 pop this 0
 push pointer 0

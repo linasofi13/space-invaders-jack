@@ -122,11 +122,13 @@ call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
-function JuegoNave.moveAlien 3
+function JuegoNave.moveAlien 4
 push argument 0
 pop pointer 0
 push constant 0
 pop local 0
+push constant 0
+pop local 1
 label WHILE_EXP0
 push local 0
 push this 3
@@ -146,9 +148,27 @@ gt
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push local 2
-call Alien.cambiarDireccion 1
+label WHILE_EXP1
+push local 1
+push this 3
+lt
+not
+if-goto WHILE_END1
+push local 1
+push this 2
+add
+pop pointer 1
+push that 0
+pop local 3
+push local 3
+call Alien.changeDirection 1
 pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
 label IF_FALSE0
 push local 2
 call Alien.getX 1
@@ -157,13 +177,28 @@ lt
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push local 2
-call Alien.cambiarDireccion 1
+label WHILE_EXP2
+push local 1
+push this 3
+lt
+not
+if-goto WHILE_END2
+push local 1
+push this 2
+add
+pop pointer 1
+push that 0
+pop local 3
+push local 3
+call Alien.changeDirection 1
 pop temp 0
-label IF_FALSE1
-push local 2
-call Alien.getX 1
+push local 1
+push constant 1
+add
 pop local 1
+goto WHILE_EXP2
+label WHILE_END2
+label IF_FALSE1
 push local 2
 call Alien.movement 1
 pop temp 0
@@ -211,16 +246,26 @@ pop temp 0
 label IF_FALSE0
 push constant 0
 return
-function JuegoNave.run 5
+function JuegoNave.newShooter 0
 push argument 0
 pop pointer 0
-push constant 0
-pop local 1
-push constant 5
+push constant 25
+call Random.randRange 1
 push this 2
 add
 pop pointer 1
 push that 0
+return
+function JuegoNave.run 5
+push argument 0
+pop pointer 0
+push constant 0
+call Random.setSeed 1
+pop temp 0
+push constant 0
+pop local 1
+push pointer 0
+call JuegoNave.newShooter 1
 pop local 4
 label WHILE_EXP0
 push local 1
@@ -260,6 +305,12 @@ label IF_TRUE1
 push local 4
 call Alien.createShoot 1
 pop temp 0
+push constant 0
+call Random.setSeed 1
+pop temp 0
+push pointer 0
+call JuegoNave.newShooter 1
+pop local 4
 push constant 1
 pop this 5
 label IF_FALSE1
@@ -298,11 +349,11 @@ push constant 0
 not
 pop local 1
 label IF_FALSE3
-push local 0
-push constant 32
-eq
 push this 4
 push constant 0
+eq
+push local 0
+push constant 32
 eq
 and
 if-goto IF_TRUE4
@@ -357,6 +408,12 @@ label IF_TRUE6
 push local 4
 call Alien.createShoot 1
 pop temp 0
+push constant 2
+call Random.setSeed 1
+pop temp 0
+push pointer 0
+call JuegoNave.newShooter 1
+pop local 4
 push constant 1
 pop this 5
 label IF_FALSE6

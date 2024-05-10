@@ -127,7 +127,7 @@ eq
 push this 0
 push this 2
 add
-push constant 470
+push constant 460
 lt
 and
 if-goto IF_TRUE0
@@ -140,7 +140,7 @@ push pointer 0
 call Nave.erase 1
 pop temp 0
 push this 0
-push constant 10
+push constant 20
 add
 pop this 0
 push constant 0
@@ -155,7 +155,7 @@ push argument 1
 push constant 130
 eq
 push this 0
-push constant 1
+push constant 20
 gt
 and
 if-goto IF_TRUE1
@@ -168,7 +168,7 @@ push pointer 0
 call Nave.erase 1
 pop temp 0
 push this 0
-push constant 10
+push constant 20
 sub
 pop this 0
 push constant 0

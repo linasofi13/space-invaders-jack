@@ -35,17 +35,21 @@ class Shoot {
 		return y;
 	}
 	    
+    /*This is a method where we make the 
+    illusion of movement for each bullet,
+    it is the same code for aliens and 
+    player but for players the bullet 
+    goes upwards and for aliens it goes downwards.*/
+
     method void shoot(int entity){
         if ((y > 10)&(y < 243)){
-            do Screen.setColor(false);
-            do Screen.drawRectangle(x, y, x + size, y + size);
+            do erase();
             if (entity = 1){
                 let y = y - 5;
             }if (entity = 2){
                 let y = y + 5;
             }
-            do Screen.setColor(true);
-            do Screen.drawRectangle(x, y, x + size, y + size);
+            do draw();
         }else{
             do dispose();
         }

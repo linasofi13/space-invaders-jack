@@ -1,6 +1,6 @@
 class Nave {
-    field int x, y; // ubicacion de la nave
-    field int size; // tamaño de la nave
+    field int x, y; 
+    field int size; 
     field int ancho; 
     field Shoot shoot;
 
@@ -39,22 +39,25 @@ class Nave {
 
 
     method void movement(int dir){
-        if ((dir = 132) & ((x + size) < 470)){
+        if ((dir = 132) & ((x + size) < 460)){
             do Screen.setColor(false);
             do erase();
-            let x = x + 10;
+            let x = x + 20;
             do Screen.setColor(true);
             do draw();
-        }if ((dir = 130) & (x > 1)){
+        }if ((dir = 130) & (x > 20)){
             do Screen.setColor(false);
             do erase();
-            let x = x - 10;
+            let x = x - 20;
             do Screen.setColor(true);
             do draw();
         }
         return;
     }
 
+    /*In this method we create
+    the bullet that will 
+    later be shot*/
     method void createShoot() {
 		var int posicion_x;
 		let posicion_x = (size + ancho)/2;

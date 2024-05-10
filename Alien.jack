@@ -1,12 +1,12 @@
 class Alien{
     field int x, y;
-    field int direccion; 
+    field int direction; 
     field Shoot alienShoots;
 
     constructor Alien new(int posX, int posY){
         let x = posX;
         let y = posY;
-        let direccion = 1;
+        let direction = 1;
         do draw();
         return this;
     }
@@ -191,33 +191,42 @@ class Alien{
         return y;
     }
 
-    method int getDireccion(){
-        return direccion;
+    method int getDirection(){
+        return direction;
     }
+    
 
-    method void cambiarDireccion() {
-		if (direccion = 1) {
-			let direccion = 2;
+    /*In this method we change 
+    the direction of movement for each alien*/
+    method void changeDirection() {
+		if (direction = 1) {
+			let direction = 2;
 		}
 		else {
-			let direccion = 1;
+			let direction = 1;
 		}
 		return;
 	}
 
+    /*This is a method where we increse 
+    or decrease the posicion of the aliens
+    and then draw the alien in the new position*/
     method void movement(){
-        if (direccion = 1 ){
+        if (direction = 1 ){
             do erase();
-            let x = x + 2;
+            let x = x + 4;
             do draw();
             }else{
             do erase();
-            let x = x - 2;
+            let x = x - 4;
             do draw();
         }
         return;
     }
 
+    /*In this method we create
+    the bullet that will 
+    later be shot*/
     method void createShoot() {
         let alienShoots = Shoot.new(x,y);
         return;
