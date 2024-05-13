@@ -4,8 +4,12 @@ class JuegoNave{
     field int direccion;
     field Array aliens;
     field int totalAliens;
-    field int playerShootsFlag;  //a flag that tells us if there is a palyer's bullet on the screen at this time 
+    field int playerShootsFlag;  //a flag that tells us if there is a player's bullet on the screen at this time 
     field int alienShootsFlag;  //a flag that tells us if there is a aliens's bullet on the screen at this time 
+    field int pointsPlayer; // how many aliens player has killed
+    field int livesPlayer;
+    field int sizeAlien; // when shooting, comparing to x,y position of alien, but need to also check surroudings of that x,y since alien is bigger than a x,y position 
+
 
     constructor JuegoNave new(){
         let player = Nave.new();
@@ -14,6 +18,9 @@ class JuegoNave{
         let aliens = Array.new(totalAliens);
         let playerShootsFlag = 0;
         let alienShootsFlag = 0; 
+        let pointsPlayer = 0;
+        let livesPlayer = 5;
+        let sizeAlien = 5; // testing the size of the alien for the shoot to cover all its body
         do generateAliens();
         return this;
     }
@@ -21,13 +28,8 @@ class JuegoNave{
     method void generateAliens(){
         var int x, y, i;
         var Alien alien;
-<<<<<<< HEAD
-        let x = 100; // posicion inicial del primer alien 
-        let y = 20;
-=======
         let x = 100;    // x-pos of the first alien
         let y = 20;     // y-pos of the firt alien
->>>>>>> 5bf5152bd1887bb0f7acc49a46b13474406c6f31
         let i = 0;
         while(i < totalAliens){
             let alien = Alien.new(x, y);
@@ -69,7 +71,7 @@ class JuegoNave{
     change the direction of each alien.*/
     method void moveAlien(){
         var int i,j;
-        var Alien currentAlien,AlienChangeDirection;
+        var Alien currentAlien, AlienChangeDirection;
         let i = 0;
         let j = 0;
         while(i < totalAliens){
@@ -115,17 +117,70 @@ class JuegoNave{
         return aliens[Random.randRange(25)];
     }
 
+    method int shootColisionAlien(Shoot playerShoot){
+        var int i; // i for while loop
+        var Alien alien_actual;
+        var int colisionFlag; // colision happened = 1, colision not happened = 0;
+
+
+        var int alien_position_x, alien_position_y; // took a while to realize var declarations need to always be on top of methods T.T and then let or do operations
+        var int shoot_position_x, shoot_position_y;
+        
+        let i = 0;
+
+        while(i < totalAliens){
+           
+
+            let alien_actual = aliens[i]; // get the current alien
+
+            let alien_position_x = alien_actual.getX();
+            let alien_position_y = alien_actual.getY();
+    
+           
+            let shoot_position_x = playerShoot.getX();
+            let shoot_position_y = playerShoot.getY();
+    
+            
+            let colisionFlag = 0;
+            if ( (~(shoot_position_y < alien_position_y)) & (~(shoot_position_y > (alien_position_y+sizeAlien))) ) { // if (shoot_position_y >= alien_position_y) and (shoot_position_y <= (alien_position_y + sizeAlien)):
+                if ((~(shoot_position_x < alien_position_x)) & (~(shoot_position_x > (alien_position_x+sizeAlien)))) {
+                    let colisionFlag = 1;
+                }
+                return 0;
+            }
+            if (colisionFlag = 1){
+                do alien_actual.erase();
+                let pointsPlayer = pointsPlayer + 1;
+                do Output.moveCursor(0,0);
+                do Output.printString("Points: ");
+                do Output.printInt(pointsPlayer);
+                do Output.printString("      Lives Left: ");
+                do Output.printInt(livesPlayer);
+            }
+            let i = i + 1;
+        }
+        return 0;
+    }
+
+
 
 
     method void run() {
         var char tecla;
         var boolean exit;
-        var Shoot playerShoots; 
+        var Shoot playerShoots; // por q un disparo instanciado es playerShoots y no Shoot jsjjs (causa confusion)
         var Shoot alienShoots;  
         var Alien devuelta;  //This is the alien that is shooting at this moment 
+        var int colisionAlien; // check if bullet hit alien (if there was a collision)
         do Random.setSeed(0);
         let exit = false;
         let devuelta = newShooter();
+
+        do Output.moveCursor(0,0);
+		do Output.printString("Points: ");
+		do Output.printInt(pointsPlayer);
+		do Output.printString("      Lives Left: ");
+		do Output.printInt(livesPlayer);
 
         while (~exit){
             while (tecla = 0) {
@@ -133,6 +188,11 @@ class JuegoNave{
                     let playerShoots = player.getShoot();
                     do playerShoots.shoot(1); //1 is for player 2 is for aliens 
                     do shootPathPlayer(playerShoots);
+                    let colisionAlien = shootColisionAlien(playerShoots); // method to check if players shoot hits alien
+                    if(colisionAlien = 1){
+                        do playerShoot.dispose();
+                        // let playerShootFlag = 0;
+                    }
                 }
                 if (alienShootsFlag = 0){
                     do devuelta.createShoot();
@@ -144,6 +204,7 @@ class JuegoNave{
                     let alienShoots = devuelta.getShoot();
                     do alienShoots.shoot(2);    //1 is for player 2 is for aliens 
                     do shootPathAlien(alienShoots);
+                   
                 }
                 
                 let tecla = Keyboard.keyPressed();

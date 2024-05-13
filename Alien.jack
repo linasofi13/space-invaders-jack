@@ -2,11 +2,13 @@ class Alien{
     field int x, y;
     field int direction; 
     field Shoot alienShoots;
+    field int muerto;
 
     constructor Alien new(int posX, int posY){
         let x = posX;
         let y = posY;
         let direction = 1;
+        let muerto = 0; // muerto = 1, vivo = 0
         do draw();
         return this;
     }
@@ -191,8 +193,13 @@ class Alien{
         return y;
     }
 
+
     method int getDirection(){
         return direction;
+    }
+
+    method int getMuerto(){
+        return muerto;
     }
     
 
