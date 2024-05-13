@@ -1,8 +1,8 @@
 class Nave {
-    field int x, y; // ubicacion de la nave
-    field int size; // tamaño de la nave
+    field int x, y; 
+    field int size; 
     field int ancho; 
-    field Disparo disparo;
+    field Shoot shoot;
 
 
 
@@ -21,7 +21,7 @@ class Nave {
     }
 
     method void draw(){
-        do borrar();
+        do erase();
         do Screen.setColor(1);
         do Screen.drawRectangle(x + 20, y-10 ,x+30,y-5);
         do Screen.drawRectangle(x + 5,y-5,x + 45, y);
@@ -29,7 +29,7 @@ class Nave {
         return;
     }
 
-    method void borrar(){ 
+    method void erase(){ 
         do Screen.setColor(false);
         do Screen.drawRectangle(x + 20, y-10 ,x+30,y-5);
         do Screen.drawRectangle(x + 5,y-5,x + 45, y);
@@ -39,30 +39,33 @@ class Nave {
 
 
     method void movement(int dir){
-        if ((dir = 132) & ((x + size) < 470)){
+        if ((dir = 132) & ((x + size) < 460)){
             do Screen.setColor(false);
-            do borrar();
-            let x = x + 10;
+            do erase();
+            let x = x + 20;
             do Screen.setColor(true);
             do draw();
-        }if ((dir = 130) & (x > 1)){
+        }if ((dir = 130) & (x > 20)){
             do Screen.setColor(false);
-            do borrar();
-            let x = x - 10;
+            do erase();
+            let x = x - 20;
             do Screen.setColor(true);
             do draw();
         }
         return;
     }
 
-    method void realizarDisparo() {
+    /*In this method we create
+    the bullet that will 
+    later be shot*/
+    method void createShoot() {
 		var int posicion_x;
 		let posicion_x = (size + ancho)/2;
-        let disparo = Disparo.new(x + posicion_x, y - 15);
+        let shoot = Shoot.new(x + posicion_x, y - 15);
         return;
     }
 
-    method Disparo getDisparo() {
-        return disparo;
+    method Shoot getShoot() {
+        return shoot;
     }
 }

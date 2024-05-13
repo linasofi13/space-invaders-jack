@@ -1,39 +1,38 @@
 class JuegoNave{
 
-    field Nave figura;
+    field Nave player;
     field int direccion;
     field Array aliens;
-    field int sizeAliens;
-    field int numAliens;
     field int totalAliens;
-    field int tiempo;
-    field int sizeNave;
-    field int disparo_bandera;
+    field int playerShootsFlag;  //a flag that tells us if there is a palyer's bullet on the screen at this time 
+    field int alienShootsFlag;  //a flag that tells us if there is a aliens's bullet on the screen at this time 
 
     constructor JuegoNave new(){
-        let figura = Nave.new();
+        let player = Nave.new();
         let direccion = 0;
-        let numAliens = 5;
-        let sizeAliens = 1;
         let totalAliens = 25;
         let aliens = Array.new(totalAliens);
-        let disparo_bandera = 0;
-        do generarAliens();
+        let playerShootsFlag = 0;
+        let alienShootsFlag = 0; 
+        do generateAliens();
         return this;
     }
     
-    method void generarAliens(){
-        var int x, y, i, j;
+    method void generateAliens(){
+        var int x, y, i;
         var Alien alien;
+<<<<<<< HEAD
         let x = 100; // posicion inicial del primer alien 
         let y = 20;
+=======
+        let x = 100;    // x-pos of the first alien
+        let y = 20;     // y-pos of the firt alien
+>>>>>>> 5bf5152bd1887bb0f7acc49a46b13474406c6f31
         let i = 0;
-        let j = 1;  
         while(i < totalAliens){
             let alien = Alien.new(x, y);
             let aliens[i] = alien;
-
-            let x = x + 50; // imprimir el siguiente alien 70 espacios a la derecha
+            let x = x + 50;
             let i = i + 1;
            
             if (i = 5){
@@ -53,99 +52,135 @@ class JuegoNave{
                 let x = 100;
             }
         }
-       
-
+    
         return;
     }
    
     method void dispose() {
-        do figura.dispose();
+        do player.dispose();
         do Memory.deAlloc(this);
         return;
     }
 
-    method void moverFigura(int tecla) { 
-        do figura.movement(tecla);  
-        return;
-    }
-
-    method void moverAlien(){
-        var int i;
-        var int posicion_x_alien_actual;
-        var Alien alien_actual;
+    /*We move the aliens with 
+    the alien movement method 
+    one by one until we reach 
+    the top of the screen and 
+    change the direction of each alien.*/
+    method void moveAlien(){
+        var int i,j;
+        var Alien currentAlien,AlienChangeDirection;
         let i = 0;
+        let j = 0;
         while(i < totalAliens){
-            let alien_actual = aliens[i];
-            if(alien_actual.getX() > 450){
-                do alien_actual.cambiarDireccion();
-            }if (alien_actual.getX() < 15){
-                do alien_actual.cambiarDireccion();
+            let currentAlien = aliens[i];
+            if(currentAlien.getX() > 450){
+                while (j < totalAliens){
+                    let AlienChangeDirection = aliens[j];
+                    do AlienChangeDirection.changeDirection();
+                    let j = j + 1;
+                }
+            }if (currentAlien.getX() < 15){
+                while (j < totalAliens){
+                    let AlienChangeDirection = aliens[j];
+                    do AlienChangeDirection.changeDirection();
+                    let j = j + 1;
+                }
             }
-            let posicion_x_alien_actual = alien_actual.getX();
-            do alien_actual.movement();
+            do currentAlien.movement();
             let i = i + 1;
         }
         return;
     }
 
-    method void disparoCamino(Disparo disparo){
-        if (disparo.getY() < 11){
-            let disparo_bandera = 0;
-			do disparo.dispose();
+
+    method void shootPathPlayer (Shoot shoot){
+        if (shoot.getY() < 11){
+            let playerShootsFlag = 0;
+			do shoot.dispose();
+        }
+        return;
+
+	}
+
+    method void shootPathAlien (Shoot shoot){
+        if (shoot.getY() > 243){
+            let alienShootsFlag = 0;
+			do shoot.dispose();
         }
 		return;
-	}
+    }
+
+    method Alien newShooter(){
+        return aliens[Random.randRange(25)];
+    }
 
 
 
     method void run() {
         var char tecla;
         var boolean exit;
-        var Disparo disparo; 
-        var Alien devuelta;
-        var Disparo disparoAlien;
+        var Shoot playerShoots; 
+        var Shoot alienShoots;  
+        var Alien devuelta;  //This is the alien that is shooting at this moment 
+        do Random.setSeed(0);
         let exit = false;
-        let devuelta = aliens[5];
-        
+        let devuelta = newShooter();
+
         while (~exit){
             while (tecla = 0) {
-                if (disparo_bandera = 1){
-                    let disparo = figura.getDisparo();
-                    let disparoAlien = devuelta.getDisparo();
-                    do disparo.disparar();
-                    do disparoAlien.alienShoot();
-                    do disparoCamino(disparo);
-                    do disparoCamino(disparoAlien);
+                if (playerShootsFlag = 1){
+                    let playerShoots = player.getShoot();
+                    do playerShoots.shoot(1); //1 is for player 2 is for aliens 
+                    do shootPathPlayer(playerShoots);
+                }
+                if (alienShootsFlag = 0){
+                    do devuelta.createShoot();
+                    do Random.setSeed(0);
+                    //let devuelta = newShooter();
+                    let alienShootsFlag = 1;
+                }
+                if (alienShootsFlag = 1 ){
+                    let alienShoots = devuelta.getShoot();
+                    do alienShoots.shoot(2);    //1 is for player 2 is for aliens 
+                    do shootPathAlien(alienShoots);
                 }
                 
                 let tecla = Keyboard.keyPressed();
-                do moverAlien(); // correcto por ahora
+                do moveAlien(); 
             }
 
-            if (tecla = 81) {  //letra Q  QUIT
+            if (tecla = 81) {  //Q  QUIT
                 let exit = true;
             }
 
-            if ((tecla = 32) & (disparo_bandera = 0)){ // presionar espacio para disparar
-                do figura.realizarDisparo();
-                do devuelta.realizarDisparoAlien();// activa disparo, activar bandera
-                let disparo_bandera = 1;
+            if ((playerShootsFlag = 0) & (tecla = 32) ){ 
+                do player.createShoot();
+                let playerShootsFlag = 1;
             }
-
+           
 
             while (~(tecla = 0)) {
                 let tecla = Keyboard.keyPressed();
-                do moverAlien(); // correcto por ahora
-                do moverFigura(tecla);
-                if (disparo_bandera = 1){
-                    let disparo = figura.getDisparo();
-                    let disparoAlien = devuelta.getDisparo();
-                    do disparo.disparar();
-                    do disparoAlien.alienShoot();
-                    do disparoCamino(disparo);
-                    do disparoCamino(disparoAlien);
+                do moveAlien(); 
+                do player.movement(tecla); 
+                if (playerShootsFlag = 1){
+                    let playerShoots = player.getShoot();
+                    do playerShoots.shoot(1); //1 is for player 2 is for aliens 
+                    do shootPathPlayer(playerShoots);
                 }
-                
+                if (alienShootsFlag = 0){
+                    do devuelta.createShoot();
+                    do Random.setSeed(2);
+                    //let devuelta = newShooter();
+                    let alienShootsFlag = 1;
+                }
+
+                if (alienShootsFlag = 1 ){
+                    let alienShoots = devuelta.getShoot();
+                    do alienShoots.shoot(2); //1 is for player 2 is for aliens 
+                    do shootPathAlien(alienShoots);
+                }
             }
         }
         return;

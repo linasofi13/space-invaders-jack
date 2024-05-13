@@ -1,34 +1,18 @@
 class Alien{
     field int x, y;
-    field int size;
-    field int ancho;
-    field int direccion; // 1 es derecha, 2 es izquierda
-    // field int altura;
-    field Disparo disparoAlien;
+    field int direction; 
+    field Shoot alienShoots;
 
-    constructor Alien new(int xx, int yy){
-        let x = xx;
-        let y = yy;
-        let direccion = 1; // empieza yendo a la derecha
-        //let altura = 10;
+    constructor Alien new(int posX, int posY){
+        let x = posX;
+        let y = posY;
+        let direction = 1;
         do draw();
         return this;
     }
 
     method void dispose() {
         do Memory.deAlloc(this);
-        return;
-    }
-
-    method void drawNuevo(){
-        do Screen.setColor(true);
-        do Screen.drawRectangle(x-10 , y-10 ,x+10,y+10);
-        return;
-    }
-
-    method void borrarNuevo(){
-        do Screen.setColor(false);
-        do Screen.drawRectangle(x-10 , y-10 ,x+10,y+10);
         return;
     }
 
@@ -116,7 +100,7 @@ class Alien{
     }
 
 
-    method void borrar() {
+    method void erase() {
 	    var int memAddress;
 	    let memAddress = 16384 + (y*32) + (x/16);
 	    if((memAddress > 16383) & (memAddress < 24576)){
@@ -207,40 +191,49 @@ class Alien{
         return y;
     }
 
-    method int getDireccion(){
-        return direccion;
+    method int getDirection(){
+        return direction;
     }
+    
 
-    method void cambiarDireccion() {
-		if (direccion = 1) {
-			let direccion = 2;
+    /*In this method we change 
+    the direction of movement for each alien*/
+    method void changeDirection() {
+		if (direction = 1) {
+			let direction = 2;
 		}
 		else {
-			let direccion = 1;
+			let direction = 1;
 		}
 		return;
 	}
 
+    /*This is a method where we increse 
+    or decrease the posicion of the aliens
+    and then draw the alien in the new position*/
     method void movement(){
-        if (direccion = 1 ){
-            do borrar();
-            let x = x + 2;
+        if (direction = 1 ){
+            do erase();
+            let x = x + 4;
             do draw();
             }else{
-            do borrar();
-            let x = x - 2;
+            do erase();
+            let x = x - 4;
             do draw();
         }
         return;
     }
 
-    method void realizarDisparoAlien() {
-        let disparoAlien = Disparo.new(x,y);
+    /*In this method we create
+    the bullet that will 
+    later be shot*/
+    method void createShoot() {
+        let alienShoots = Shoot.new(x,y);
         return;
     }
 
-    method Disparo getDisparo() {
-        return disparoAlien;
+    method Shoot getShoot() {
+        return alienShoots;
     }
 
 }
