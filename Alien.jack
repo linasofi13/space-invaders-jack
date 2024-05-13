@@ -239,27 +239,8 @@ class Alien{
         return;
     }
 
-<<<<<<< HEAD
-    method void alienShoot(){
-        var int tempy;
-        let tempy = y;
-        do Screen.setColor(true);
-        do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
-        while (tempy < 248){
-            do Sys.wait(3);
-            do Screen.setColor(false);
-            do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
-            let tempy = tempy + 2;
-            do Screen.setColor(true);
-            do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
-        }
-        do Screen.setColor(false);
-        do Screen.drawRectangle(x, tempy, x + 2, tempy + 2);
-        return;
-=======
     method Disparo getDisparo() {
         return disparoAlien;
->>>>>>> bec5c396891e5bea27a2b7bc4b6192a3df04216a
     }
 
 }

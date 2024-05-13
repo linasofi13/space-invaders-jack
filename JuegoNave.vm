@@ -10,7 +10,7 @@ push constant 5
 pop this 4
 push constant 1
 pop this 3
-push constant 5
+push constant 25
 pop this 5
 push this 5
 call Array.new 1
@@ -27,7 +27,7 @@ push argument 0
 pop pointer 0
 push constant 100
 pop local 0
-push constant 40
+push constant 20
 pop local 1
 push constant 0
 pop local 2
