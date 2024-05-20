@@ -10,12 +10,8 @@ class Alien{
         let y = posY;
         let alienIndex = index;
         let direction = 1;
-<<<<<<< HEAD
         let muerto = 0; // muerto = 1, vivo = 0
         do draw();
-=======
-        do draw(); 
->>>>>>> 83d385d (implementingLinkedList)
         return this;
     }   
 
