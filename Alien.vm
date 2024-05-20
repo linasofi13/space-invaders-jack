@@ -1,5 +1,5 @@
 function Alien.new 0
-push constant 5
+push constant 6
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -8,13 +8,10 @@ push argument 1
 pop this 1
 push argument 2
 pop this 2
-<<<<<<< HEAD
-push constant 0
-pop this 4
-=======
 push constant 1
 pop this 3
->>>>>>> 83d385d (implementingLinkedList)
+push constant 0
+pop this 5
 push pointer 0
 call Alien.draw 1
 pop temp 0
@@ -976,7 +973,7 @@ return
 function Alien.getMuerto 0
 push argument 0
 pop pointer 0
-push this 4
+push this 5
 return
 function Alien.changeDirection 0
 push argument 0

@@ -48,8 +48,6 @@ class LinkedList {
     }
     
 
-
-
     method void removeSpecificAlien(int n) {
         var Node current;   
         var Node previous;
@@ -58,7 +56,7 @@ class LinkedList {
         let previous = null;
   
 
-        if ((n = 0) & (head.getIndex() = 0)){
+        if ((head.getIndex() = n)){
             let head = current.getNext();
             do current.dispose();
             return;

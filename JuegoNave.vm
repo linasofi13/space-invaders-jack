@@ -1,25 +1,21 @@
 function JuegoNave.new 0
-push constant 9
+push constant 8
 call Memory.alloc 1
 pop pointer 0
 call Nave.new 0
 pop this 0
 push constant 25
+pop this 1
+push constant 0
 pop this 2
 push constant 0
 pop this 3
 push constant 0
-<<<<<<< HEAD
-pop this 5
-push constant 0
-pop this 6
-push constant 5
-pop this 7
-push constant 5
-pop this 8
-=======
 pop this 4
->>>>>>> 83d385d (implementingLinkedList)
+push constant 5
+pop this 5
+push constant 5
+pop this 6
 push pointer 0
 call JuegoNave.generateAliens 1
 pop temp 0
@@ -35,14 +31,14 @@ pop local 1
 push constant 0
 pop local 2
 call LinkedList.new 0
-pop this 5
+pop this 7
 label WHILE_EXP0
 push local 2
-push this 2
+push this 1
 lt
 not
 if-goto WHILE_END0
-push this 5
+push this 7
 push local 0
 push local 1
 push local 2
@@ -135,7 +131,7 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push constant 0
-pop this 3
+pop this 2
 push argument 1
 call Shoot.dispose 1
 pop temp 0
@@ -153,23 +149,12 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push constant 0
-pop this 4
+pop this 3
 push argument 1
 call Shoot.dispose 1
 pop temp 0
 label IF_FALSE0
 push constant 0
-return
-function JuegoNave.run 6
-push argument 0
-pop pointer 0
-<<<<<<< HEAD
-push constant 25
-call Random.randRange 1
-push this 2
-add
-pop pointer 1
-push that 0
 return
 function JuegoNave.shootColisionAlien 7
 push argument 0
@@ -178,12 +163,12 @@ push constant 0
 pop local 0
 label WHILE_EXP0
 push local 0
-push this 3
+push this 1
 lt
 not
 if-goto WHILE_END0
 push local 0
-push this 2
+push this 7
 add
 pop pointer 1
 push that 0
@@ -208,7 +193,7 @@ lt
 not
 push local 6
 push local 4
-push this 8
+push this 6
 add
 gt
 not
@@ -222,7 +207,7 @@ lt
 not
 push local 5
 push local 3
-push this 8
+push this 6
 add
 gt
 not
@@ -245,10 +230,10 @@ label IF_TRUE2
 push local 1
 call Alien.erase 1
 pop temp 0
-push this 6
+push this 4
 push constant 1
 add
-pop this 6
+pop this 4
 push constant 0
 push constant 0
 call Output.moveCursor 2
@@ -273,7 +258,7 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push this 6
+push this 4
 call Output.printInt 1
 pop temp 0
 push constant 18
@@ -316,7 +301,7 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push this 7
+push this 5
 call Output.printInt 1
 pop temp 0
 label IF_FALSE2
@@ -328,17 +313,11 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function JuegoNave.run 6
+function JuegoNave.run 5
 push argument 0
 pop pointer 0
 push constant 0
-call Random.setSeed 1
-pop temp 0
-push constant 0
 pop local 1
-push pointer 0
-call JuegoNave.newShooter 1
-pop local 4
 push constant 0
 push constant 0
 call Output.moveCursor 2
@@ -363,7 +342,7 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push this 6
+push this 4
 call Output.printInt 1
 pop temp 0
 push constant 18
@@ -406,16 +385,9 @@ push constant 32
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-push this 7
+push this 5
 call Output.printInt 1
 pop temp 0
-=======
-push constant 0
-pop local 1
-push constant 0
-not
-pop local 5
->>>>>>> 83d385d (implementingLinkedList)
 label WHILE_EXP0
 push local 1
 not
@@ -427,7 +399,7 @@ push constant 0
 eq
 not
 if-goto WHILE_END1
-push this 3
+push this 2
 push constant 1
 eq
 if-goto IF_TRUE0
@@ -444,60 +416,10 @@ push pointer 0
 push local 2
 call JuegoNave.shootPathPlayer 2
 pop temp 0
-<<<<<<< HEAD
-push pointer 0
-push local 2
-call JuegoNave.shootColisionAlien 2
-pop local 5
-push local 5
-push constant 1
-eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-call playerShoot.dispose 0
-pop temp 0
-label IF_FALSE1
 label IF_FALSE0
-push this 5
-push constant 0
-eq
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push local 4
-call Alien.createShoot 1
-pop temp 0
-push constant 0
-call Random.setSeed 1
-pop temp 0
-push constant 1
-pop this 5
-label IF_FALSE2
-push this 5
-push constant 1
-eq
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
-push local 4
-call Alien.getShoot 1
-pop local 3
-push local 3
-push constant 2
-call Shoot.shoot 2
-pop temp 0
-push pointer 0
-push local 3
-call JuegoNave.shootPathAlien 2
-pop temp 0
-label IF_FALSE3
-=======
-label IF_FALSE0
->>>>>>> 83d385d (implementingLinkedList)
 call Keyboard.keyPressed 0
 pop local 0
-push this 5
+push this 7
 call LinkedList.moverAlien 1
 pop temp 0
 goto WHILE_EXP1
@@ -505,16 +427,6 @@ label WHILE_END1
 push local 0
 push constant 81
 eq
-<<<<<<< HEAD
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
-push constant 0
-not
-pop local 1
-label IF_FALSE4
-push this 4
-=======
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
@@ -522,34 +434,22 @@ push constant 0
 not
 pop local 1
 label IF_FALSE1
-push this 3
->>>>>>> 83d385d (implementingLinkedList)
+push this 2
 push constant 0
 eq
 push local 0
 push constant 32
 eq
 and
-<<<<<<< HEAD
-if-goto IF_TRUE5
-goto IF_FALSE5
-label IF_TRUE5
-=======
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
->>>>>>> 83d385d (implementingLinkedList)
 push this 0
 call Nave.createShoot 1
 pop temp 0
 push constant 1
-<<<<<<< HEAD
-pop this 4
-label IF_FALSE5
-=======
-pop this 3
+pop this 2
 label IF_FALSE2
->>>>>>> 83d385d (implementingLinkedList)
 label WHILE_EXP2
 push local 0
 push constant 0
@@ -557,39 +457,45 @@ eq
 not
 not
 if-goto WHILE_END2
-push this 5
-push constant 0
-call LinkedList.removeSpecificAlien 2
-pop temp 0
-push this 5
-push constant 24
-call LinkedList.removeSpecificAlien 2
-pop temp 0
-push this 5
-push constant 24
-call LinkedList.removeSpecificAlien 2
-pop temp 0
 call Keyboard.keyPressed 0
 pop local 0
-push this 5
+push this 7
 call LinkedList.moverAlien 1
 pop temp 0
 push this 0
 push local 0
 call Nave.movement 2
 pop temp 0
-push this 3
+push this 7
+push constant 0
+call LinkedList.removeSpecificAlien 2
+pop temp 0
+push this 7
+push constant 24
+call LinkedList.removeSpecificAlien 2
+pop temp 0
+push this 7
+push constant 1
+call LinkedList.removeSpecificAlien 2
+pop temp 0
+push this 7
+push constant 15
+call LinkedList.removeSpecificAlien 2
+pop temp 0
+push this 7
+push constant 12
+call LinkedList.removeSpecificAlien 2
+pop temp 0
+push this 7
+push constant 17
+call LinkedList.removeSpecificAlien 2
+pop temp 0
+push this 2
 push constant 1
 eq
-<<<<<<< HEAD
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
-=======
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
->>>>>>> 83d385d (implementingLinkedList)
 push this 0
 call Nave.getShoot 1
 pop local 2
@@ -601,44 +507,7 @@ push pointer 0
 push local 2
 call JuegoNave.shootPathPlayer 2
 pop temp 0
-<<<<<<< HEAD
-label IF_FALSE6
-push this 5
-push constant 0
-eq
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
-push local 4
-call Alien.createShoot 1
-pop temp 0
-push constant 2
-call Random.setSeed 1
-pop temp 0
-push constant 1
-pop this 5
-label IF_FALSE7
-push this 5
-push constant 1
-eq
-if-goto IF_TRUE8
-goto IF_FALSE8
-label IF_TRUE8
-push local 4
-call Alien.getShoot 1
-pop local 3
-push local 3
-push constant 2
-call Shoot.shoot 2
-pop temp 0
-push pointer 0
-push local 3
-call JuegoNave.shootPathAlien 2
-pop temp 0
-label IF_FALSE8
-=======
 label IF_FALSE3
->>>>>>> 83d385d (implementingLinkedList)
 goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0

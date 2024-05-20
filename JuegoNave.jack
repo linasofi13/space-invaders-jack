@@ -7,7 +7,7 @@ class JuegoNave{
     field int pointsPlayer; // how many aliens player has killed
     field int livesPlayer;
     field int sizeAlien; // when shooting, comparing to x,y position of alien, but need to also check surroudings of that x,y since alien is bigger than a x,y position 
-
+    field LinkedList aliens;
 
     constructor JuegoNave new(){
         let player = Nave.new();
@@ -57,40 +57,6 @@ class JuegoNave{
         do Memory.deAlloc(this);
         return;
     }
-
-<<<<<<< HEAD
-    /*We move the aliens with 
-    the alien movement method 
-    one by one until we reach 
-    the top of the screen and 
-    change the direction of each alien.*/
-    method void moveAlien(){
-        var int i,j;
-        var Alien currentAlien, AlienChangeDirection;
-        let i = 0;
-        let j = 0;
-        while(i < totalAliens){
-            let currentAlien = aliens[i];
-            if(currentAlien.getX() > 450){
-                while (j < totalAliens){
-                    let AlienChangeDirection = aliens[j];
-                    do AlienChangeDirection.changeDirection();
-                    let j = j + 1;
-                }
-            }if (currentAlien.getX() < 15){
-                while (j < totalAliens){
-                    let AlienChangeDirection = aliens[j];
-                    do AlienChangeDirection.changeDirection();
-                    let j = j + 1;
-                }
-            }
-            do currentAlien.movement();
-            let i = i + 1;
-        }
-        return;
-    }
-=======
->>>>>>> 83d385d (implementingLinkedList)
 
 
     method void shootPathPlayer (Shoot shoot){
@@ -179,11 +145,11 @@ class JuegoNave{
                     let playerShoots = player.getShoot();
                     do playerShoots.shoot(1); //1 is for player 2 is for aliens 
                     do shootPathPlayer(playerShoots);
-                    let colisionAlien = shootColisionAlien(playerShoots); // method to check if players shoot hits alien
-                    if(colisionAlien = 1){
-                        do playerShoot.dispose();
+                    //let colisionAlien = shootColisionAlien(playerShoots); // method to check if players shoot hits alien
+                    //if(colisionAlien = 1){
+                      //  do playerShoot.dispose();
                         // let playerShootFlag = 0;
-                    }
+                    //}
                 }
 
                 /*

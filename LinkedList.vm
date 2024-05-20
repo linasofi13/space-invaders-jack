@@ -44,31 +44,6 @@ pop temp 0
 label IF_END0
 push constant 0
 return
-function LinkedList.getSpecificAlien 2
-push argument 0
-pop pointer 0
-push this 0
-pop local 0
-push constant 0
-pop local 1
-label WHILE_EXP0
-push local 0
-call Node.getIndex 1
-push argument 1
-eq
-not
-not
-if-goto WHILE_END0
-push local 0
-call Node.getNext 1
-pop local 0
-goto WHILE_EXP0
-label WHILE_END0
-push local 0
-call Node.getAlien 1
-pop local 0
-push local 0
-return
 function LinkedList.moverAlien 4
 push argument 0
 pop pointer 0
@@ -137,14 +112,10 @@ push this 0
 pop local 0
 push constant 0
 pop local 1
-push argument 1
-push constant 0
-eq
 push this 0
 call Node.getIndex 1
-push constant 0
+push argument 1
 eq
-and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
