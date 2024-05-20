@@ -4,14 +4,10 @@ class JuegoNave{
     field int totalAliens;
     field int playerShootsFlag;  //a flag that tells us if there is a player's bullet on the screen at this time 
     field int alienShootsFlag;  //a flag that tells us if there is a aliens's bullet on the screen at this time 
-<<<<<<< HEAD
     field int pointsPlayer; // how many aliens player has killed
     field int livesPlayer;
     field int sizeAlien; // when shooting, comparing to x,y position of alien, but need to also check surroudings of that x,y since alien is bigger than a x,y position 
 
-=======
-    field LinkedList aliens;
->>>>>>> 83d385d (implementingLinkedList)
 
     constructor JuegoNave new(){
         let player = Nave.new();
@@ -114,10 +110,6 @@ class JuegoNave{
 		return;
     }
 
-<<<<<<< HEAD
-    method Alien newShooter(){
-        return aliens[Random.randRange(25)];
-    }
 
     method int shootColisionAlien(Shoot playerShoot){
         var int i; // i for while loop
@@ -165,9 +157,6 @@ class JuegoNave{
     }
 
 
-=======
->>>>>>> 83d385d (implementingLinkedList)
-
 
     method void run() {
         var char tecla;
@@ -175,11 +164,6 @@ class JuegoNave{
         var Shoot playerShoots; // por q un disparo instanciado es playerShoots y no Shoot jsjjs (causa confusion)
         var Shoot alienShoots;  
         var Alien devuelta;  //This is the alien that is shooting at this moment 
-<<<<<<< HEAD
-        var int colisionAlien; // check if bullet hit alien (if there was a collision)
-        do Random.setSeed(0);
-=======
->>>>>>> 83d385d (implementingLinkedList)
         let exit = false;
 
         do Output.moveCursor(0,0);
