@@ -1,0 +1,193 @@
+function LinkedList.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+push constant 0
+pop this 0
+push pointer 0
+return
+function LinkedList.add 2
+push argument 0
+pop pointer 0
+push argument 1
+call Node.new 1
+pop local 0
+push this 0
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+pop this 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+pop local 1
+label WHILE_EXP0
+push local 1
+call Node.getNext 1
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push local 1
+call Node.getNext 1
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 1
+push local 0
+call Node.setNext 2
+pop temp 0
+label IF_END0
+push constant 0
+return
+function LinkedList.getSpecificAlien 2
+push argument 0
+pop pointer 0
+push this 0
+pop local 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 0
+call Node.getIndex 1
+push argument 1
+eq
+not
+not
+if-goto WHILE_END0
+push local 0
+call Node.getNext 1
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+call Node.getAlien 1
+pop local 0
+push local 0
+return
+function LinkedList.moverAlien 4
+push argument 0
+pop pointer 0
+push this 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push local 0
+call Node.getAlien 1
+pop local 2
+push local 2
+call Alien.getX 1
+push constant 450
+gt
+push local 2
+call Alien.getX 1
+push constant 15
+lt
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+pop local 1
+label WHILE_EXP1
+push local 1
+push constant 0
+eq
+not
+not
+if-goto WHILE_END1
+push local 1
+call Node.getAlien 1
+pop local 3
+push local 3
+call Alien.changeDirection 1
+pop temp 0
+push local 3
+call Alien.movement 1
+pop temp 0
+push local 1
+call Node.getNext 1
+pop local 1
+goto WHILE_EXP1
+label WHILE_END1
+label IF_FALSE0
+push local 2
+call Alien.movement 1
+pop temp 0
+push local 0
+call Node.getNext 1
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function LinkedList.removeSpecificAlien 2
+push argument 0
+pop pointer 0
+push this 0
+pop local 0
+push constant 0
+pop local 1
+push argument 1
+push constant 0
+eq
+push this 0
+call Node.getIndex 1
+push constant 0
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+call Node.getNext 1
+pop this 0
+push local 0
+call Node.dispose 1
+pop temp 0
+push constant 0
+return
+label IF_FALSE0
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push local 0
+call Node.getIndex 1
+push argument 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 1
+push local 0
+call Node.getNext 1
+call Node.setNext 2
+pop temp 0
+push local 0
+call Node.dispose 1
+pop temp 0
+push constant 0
+return
+label IF_FALSE1
+push local 0
+pop local 1
+push local 0
+call Node.getNext 1
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return

@@ -1,19 +1,26 @@
 class Alien{
     field int x, y;
+    field int alienIndex;
     field int direction; 
     field Shoot alienShoots;
     field int muerto;
 
-    constructor Alien new(int posX, int posY){
+    constructor Alien new(int posX, int posY,int index){
         let x = posX;
         let y = posY;
+        let alienIndex = index;
         let direction = 1;
+<<<<<<< HEAD
         let muerto = 0; // muerto = 1, vivo = 0
         do draw();
+=======
+        do draw(); 
+>>>>>>> 83d385d (implementingLinkedList)
         return this;
-    }
+    }   
 
     method void dispose() {
+        do erase();
         do Memory.deAlloc(this);
         return;
     }
@@ -100,8 +107,6 @@ class Alien{
         }
 	return;
     }
-
-
     method void erase() {
 	    var int memAddress;
 	    let memAddress = 16384 + (y*32) + (x/16);
@@ -184,6 +189,9 @@ class Alien{
         return;
     }
 
+    method int getIndex(){
+        return alienIndex;
+    }
 
     method int getX(){
         return x;
@@ -221,11 +229,11 @@ class Alien{
     method void movement(){
         if (direction = 1 ){
             do erase();
-            let x = x + 4;
+            let x = x + 3;
             do draw();
             }else{
             do erase();
-            let x = x - 4;
+            let x = x - 3;
             do draw();
         }
         return;

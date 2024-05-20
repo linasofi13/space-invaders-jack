@@ -1,21 +1,21 @@
 class JuegoNave{
 
     field Nave player;
-    field int direccion;
-    field Array aliens;
     field int totalAliens;
     field int playerShootsFlag;  //a flag that tells us if there is a player's bullet on the screen at this time 
     field int alienShootsFlag;  //a flag that tells us if there is a aliens's bullet on the screen at this time 
+<<<<<<< HEAD
     field int pointsPlayer; // how many aliens player has killed
     field int livesPlayer;
     field int sizeAlien; // when shooting, comparing to x,y position of alien, but need to also check surroudings of that x,y since alien is bigger than a x,y position 
 
+=======
+    field LinkedList aliens;
+>>>>>>> 83d385d (implementingLinkedList)
 
     constructor JuegoNave new(){
         let player = Nave.new();
-        let direccion = 0;
         let totalAliens = 25;
-        let aliens = Array.new(totalAliens);
         let playerShootsFlag = 0;
         let alienShootsFlag = 0; 
         let pointsPlayer = 0;
@@ -27,16 +27,14 @@ class JuegoNave{
     
     method void generateAliens(){
         var int x, y, i;
-        var Alien alien;
         let x = 100;    // x-pos of the first alien
-        let y = 20;     // y-pos of the firt alien
+        let y = 20;     // y-pos of the first alien
         let i = 0;
+        let aliens = LinkedList.new();
         while(i < totalAliens){
-            let alien = Alien.new(x, y);
-            let aliens[i] = alien;
-            let x = x + 50;
+            do aliens.add(Alien.new(x, y,i));
+            let x = x + 57;
             let i = i + 1;
-           
             if (i = 5){
                 let y = y + 25;
                 let x = 100;
@@ -64,6 +62,7 @@ class JuegoNave{
         return;
     }
 
+<<<<<<< HEAD
     /*We move the aliens with 
     the alien movement method 
     one by one until we reach 
@@ -94,6 +93,8 @@ class JuegoNave{
         }
         return;
     }
+=======
+>>>>>>> 83d385d (implementingLinkedList)
 
 
     method void shootPathPlayer (Shoot shoot){
@@ -113,6 +114,7 @@ class JuegoNave{
 		return;
     }
 
+<<<<<<< HEAD
     method Alien newShooter(){
         return aliens[Random.randRange(25)];
     }
@@ -163,6 +165,8 @@ class JuegoNave{
     }
 
 
+=======
+>>>>>>> 83d385d (implementingLinkedList)
 
 
     method void run() {
@@ -171,10 +175,12 @@ class JuegoNave{
         var Shoot playerShoots; // por q un disparo instanciado es playerShoots y no Shoot jsjjs (causa confusion)
         var Shoot alienShoots;  
         var Alien devuelta;  //This is the alien that is shooting at this moment 
+<<<<<<< HEAD
         var int colisionAlien; // check if bullet hit alien (if there was a collision)
         do Random.setSeed(0);
+=======
+>>>>>>> 83d385d (implementingLinkedList)
         let exit = false;
-        let devuelta = newShooter();
 
         do Output.moveCursor(0,0);
 		do Output.printString("Points: ");
@@ -184,6 +190,7 @@ class JuegoNave{
 
         while (~exit){
             while (tecla = 0) {
+               
                 if (playerShootsFlag = 1){
                     let playerShoots = player.getShoot();
                     do playerShoots.shoot(1); //1 is for player 2 is for aliens 
@@ -194,10 +201,10 @@ class JuegoNave{
                         // let playerShootFlag = 0;
                     }
                 }
+
+                /*
                 if (alienShootsFlag = 0){
                     do devuelta.createShoot();
-                    do Random.setSeed(0);
-                    //let devuelta = newShooter();
                     let alienShootsFlag = 1;
                 }
                 if (alienShootsFlag = 1 ){
@@ -206,34 +213,33 @@ class JuegoNave{
                     do shootPathAlien(alienShoots);
                    
                 }
-                
+                */
                 let tecla = Keyboard.keyPressed();
-                do moveAlien(); 
+                do aliens.moverAlien(); 
             }
-
-            if (tecla = 81) {  //Q  QUIT
-                let exit = true;
+            if (tecla = 81) { 
+                let exit = true; //Q  QUIT
             }
-
             if ((playerShootsFlag = 0) & (tecla = 32) ){ 
                 do player.createShoot();
                 let playerShootsFlag = 1;
             }
            
 
-            while (~(tecla = 0)) {
+            while (~(tecla = 0)) {  
                 let tecla = Keyboard.keyPressed();
-                do moveAlien(); 
+                do aliens.moverAlien(); 
                 do player.movement(tecla); 
+                
                 if (playerShootsFlag = 1){
                     let playerShoots = player.getShoot();
                     do playerShoots.shoot(1); //1 is for player 2 is for aliens 
                     do shootPathPlayer(playerShoots);
                 }
+                
+                /*
                 if (alienShootsFlag = 0){
                     do devuelta.createShoot();
-                    do Random.setSeed(2);
-                    //let devuelta = newShooter();
                     let alienShootsFlag = 1;
                 }
 
@@ -242,6 +248,7 @@ class JuegoNave{
                     do alienShoots.shoot(2); //1 is for player 2 is for aliens 
                     do shootPathAlien(alienShoots);
                 }
+                */
             }
         }
         return;

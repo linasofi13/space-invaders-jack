@@ -1,0 +1,33 @@
+class Node {
+    field Alien alien;
+    field Node next;
+
+    constructor Node new(alien newAlien) {
+        let alien = newAlien;
+        let next = null;
+        return this;
+    }
+    method void dispose() {
+        do alien.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+
+    method Alien getAlien() {
+        return alien;
+    }
+
+    method int getIndex(){
+        return alien.getIndex();
+    }
+
+    method void setNext(Node n) {
+        let next = n;
+        return;
+    }
+
+    method Node getNext() {
+        return next;
+    }
+}

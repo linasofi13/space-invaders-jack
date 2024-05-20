@@ -1,0 +1,78 @@
+class LinkedList {
+    field Node head;
+
+    constructor LinkedList new() {
+        let head = null;
+        return this;
+    }
+
+    method void add(Alien newAlien) {
+        var Node newNode;
+        var Node current;
+        let newNode = Node.new(newAlien);
+        if (head = null) {
+            let head = newNode;
+        } else {
+            let current = head;
+            while (~(current.getNext() = null)) {
+                let current = current.getNext();
+            }
+            do current.setNext(newNode);
+        }
+        return;
+    }
+
+
+    method void moverAlien(){
+        var Node currentNode,NodeChangeDirection;  
+        var Alien currentAlien;
+        var Alien AlienChangeDirection;
+
+    
+        let currentNode = head;
+        while(~(currentNode = null)){
+            let currentAlien = currentNode.getAlien();
+            if((currentAlien.getX() > 450) | (currentAlien.getX() < 15)){
+                let NodeChangeDirection = head;
+                while (~(NodeChangeDirection = null)){
+                    let AlienChangeDirection = NodeChangeDirection.getAlien();
+                    do AlienChangeDirection.changeDirection();
+                    do AlienChangeDirection.movement();
+                    let NodeChangeDirection = NodeChangeDirection.getNext();
+                }   
+            }
+            do currentAlien.movement();
+            let currentNode = currentNode.getNext();
+        }
+        return;
+    }
+    
+
+
+
+    method void removeSpecificAlien(int n) {
+        var Node current;   
+        var Node previous;
+
+        let current = head;
+        let previous = null;
+  
+
+        if ((n = 0) & (head.getIndex() = 0)){
+            let head = current.getNext();
+            do current.dispose();
+            return;
+        }
+        while (~(current = null )) {
+            if (current.getIndex() = n){
+                do previous.setNext(current.getNext());
+                do current.dispose();
+                return;
+            }
+            let previous = current;
+            let current = current.getNext();
+        }
+        return;
+    }
+
+}
