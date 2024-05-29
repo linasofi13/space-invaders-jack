@@ -162,3 +162,81 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
+function LinkedList.shootColisionAlien 4
+push argument 0
+pop pointer 0
+push this 0
+pop local 0
+push argument 1
+call Shoot.getY 1
+push constant 126
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push local 0
+call Node.getAlien 1
+pop local 1
+push local 1
+call Alien.getX 1
+pop local 2
+push local 1
+call Alien.getY 1
+pop local 3
+push local 2
+push constant 2
+sub
+push argument 1
+call Shoot.getX 1
+gt
+push argument 1
+call Shoot.getX 1
+push local 2
+lt
+push constant 2
+add
+and
+push local 3
+push constant 2
+sub
+push argument 1
+call Shoot.getY 1
+gt
+and
+push argument 1
+call Shoot.getY 1
+push local 3
+lt
+push constant 2
+add
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+push local 1
+call Alien.getIndex 1
+call LinkedList.removeSpecificAlien 2
+pop temp 0
+push argument 1
+call Shoot.dispose 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE1
+push local 0
+call Node.getNext 1
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+label IF_FALSE0
+push constant 0
+return

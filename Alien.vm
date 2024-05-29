@@ -1,5 +1,5 @@
 function Alien.new 0
-push constant 6
+push constant 5
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -10,8 +10,6 @@ push argument 2
 pop this 2
 push constant 1
 pop this 3
-push constant 0
-pop this 5
 push pointer 0
 call Alien.draw 1
 pop temp 0
@@ -970,11 +968,6 @@ push argument 0
 pop pointer 0
 push this 3
 return
-function Alien.getMuerto 0
-push argument 0
-pop pointer 0
-push this 5
-return
 function Alien.changeDirection 0
 push argument 0
 pop pointer 0
@@ -996,35 +989,29 @@ return
 function Alien.movement 0
 push argument 0
 pop pointer 0
+push pointer 0
+call Alien.erase 1
+pop temp 0
 push this 3
 push constant 1
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push pointer 0
-call Alien.erase 1
-pop temp 0
 push this 0
-push constant 3
+push constant 1
 add
 pop this 0
-push pointer 0
-call Alien.draw 1
-pop temp 0
 goto IF_END0
 label IF_FALSE0
-push pointer 0
-call Alien.erase 1
-pop temp 0
 push this 0
-push constant 3
+push constant 1
 sub
 pop this 0
+label IF_END0
 push pointer 0
 call Alien.draw 1
 pop temp 0
-label IF_END0
 push constant 0
 return
 function Alien.createShoot 0

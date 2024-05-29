@@ -73,4 +73,30 @@ class LinkedList {
         return;
     }
 
+
+
+    method boolean shootColisionAlien(Shoot playerShoot) {
+        var Node currentNode;
+        var Alien currentAlien;
+        var int posX, posY;
+
+        let currentNode = head;
+        if (playerShoot.getY() < 126) {
+            while (~(currentNode = null)) {
+                let currentAlien = currentNode.getAlien();
+                let posX = currentAlien.getX();
+                let posY = currentAlien.getY();
+                
+                if ((posX - 2 > playerShoot.getX()) & (playerShoot.getX() < posX + 2) & (posY - 2 > playerShoot.getY()) & (playerShoot.getY() < posY + 2)) {
+                    do removeSpecificAlien(currentAlien.getIndex());
+                    do playerShoot.dispose();
+                    return true;
+                }
+                let currentNode = currentNode.getNext();
+            }
+        }
+        return false;
+    }
+
+
 }

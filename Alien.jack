@@ -3,14 +3,12 @@ class Alien{
     field int alienIndex;
     field int direction; 
     field Shoot alienShoots;
-    field int muerto;
 
     constructor Alien new(int posX, int posY,int index){
         let x = posX;
         let y = posY;
         let alienIndex = index;
         let direction = 1;
-        let muerto = 0; // muerto = 1, vivo = 0
         do draw();
         return this;
     }   
@@ -21,7 +19,7 @@ class Alien{
         return;
     }
 
-
+    
     method void draw() {
 	    var int memAddress;
 	    let memAddress = 16384 + (y*32) + (x/16);
@@ -103,6 +101,7 @@ class Alien{
         }
 	return;
     }
+
     method void erase() {
 	    var int memAddress;
 	    let memAddress = 16384 + (y*32) + (x/16);
@@ -202,11 +201,6 @@ class Alien{
         return direction;
     }
 
-    method int getMuerto(){
-        return muerto;
-    }
-    
-
     /*In this method we change 
     the direction of movement for each alien*/
     method void changeDirection() {
@@ -223,15 +217,13 @@ class Alien{
     or decrease the posicion of the aliens
     and then draw the alien in the new position*/
     method void movement(){
+        do erase();
         if (direction = 1 ){
-            do erase();
-            let x = x + 3;
-            do draw();
-            }else{
-            do erase();
-            let x = x - 3;
-            do draw();
+            let x = x + 1;
+        }else{
+            let x = x - 1;
         }
+        do draw();
         return;
     }
 

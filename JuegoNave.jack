@@ -77,52 +77,6 @@ class JuegoNave{
     }
 
 
-    method int shootColisionAlien(Shoot playerShoot){
-        var int i; // i for while loop
-        var Alien alien_actual;
-        var int colisionFlag; // colision happened = 1, colision not happened = 0;
-
-
-        var int alien_position_x, alien_position_y; // took a while to realize var declarations need to always be on top of methods T.T and then let or do operations
-        var int shoot_position_x, shoot_position_y;
-        
-        let i = 0;
-
-        while(i < totalAliens){
-           
-
-            let alien_actual = aliens[i]; // get the current alien
-
-            let alien_position_x = alien_actual.getX();
-            let alien_position_y = alien_actual.getY();
-    
-           
-            let shoot_position_x = playerShoot.getX();
-            let shoot_position_y = playerShoot.getY();
-    
-            
-            let colisionFlag = 0;
-            if ( (~(shoot_position_y < alien_position_y)) & (~(shoot_position_y > (alien_position_y+sizeAlien))) ) { // if (shoot_position_y >= alien_position_y) and (shoot_position_y <= (alien_position_y + sizeAlien)):
-                if ((~(shoot_position_x < alien_position_x)) & (~(shoot_position_x > (alien_position_x+sizeAlien)))) {
-                    let colisionFlag = 1;
-                }
-                return 0;
-            }
-            if (colisionFlag = 1){
-                do alien_actual.erase();
-                let pointsPlayer = pointsPlayer + 1;
-                do Output.moveCursor(0,0);
-                do Output.printString("Points: ");
-                do Output.printInt(pointsPlayer);
-                do Output.printString("      Lives Left: ");
-                do Output.printInt(livesPlayer);
-            }
-            let i = i + 1;
-        }
-        return 0;
-    }
-
-
 
     method void run() {
         var char tecla;
@@ -140,11 +94,13 @@ class JuegoNave{
 
         while (~exit){
             while (tecla = 0) {
-               
                 if (playerShootsFlag = 1){
                     let playerShoots = player.getShoot();
                     do playerShoots.shoot(1); //1 is for player 2 is for aliens 
                     do shootPathPlayer(playerShoots);
+                    if (aliens.shootColisionAlien(playerShoots)){
+                        let playerShootsFlag = 0;
+                    }
                     //let colisionAlien = shootColisionAlien(playerShoots); // method to check if players shoot hits alien
                     //if(colisionAlien = 1){
                       //  do playerShoot.dispose();
@@ -180,11 +136,13 @@ class JuegoNave{
                 let tecla = Keyboard.keyPressed();
                 do aliens.moverAlien(); 
                 do player.movement(tecla); 
-                
                 if (playerShootsFlag = 1){
                     let playerShoots = player.getShoot();
                     do playerShoots.shoot(1); //1 is for player 2 is for aliens 
                     do shootPathPlayer(playerShoots);
+                    if (aliens.shootColisionAlien(playerShoots)){
+                        let playerShootsFlag = 0;
+                    }
                 }
                 
                 /*

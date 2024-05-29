@@ -51,6 +51,7 @@ class Shoot {
             }
             do draw();
         }else{
+            do erase();
             do dispose();
         }
         return;
