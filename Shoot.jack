@@ -45,9 +45,9 @@ class Shoot {
         if ((y > 10)&(y < 243)){
             do erase();
             if (entity = 1){
-                let y = y - 5;
+                let y = y - 7;
             }if (entity = 2){
-                let y = y + 5;
+                let y = y + 7;
             }
             do draw();
         }else{

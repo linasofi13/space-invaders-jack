@@ -6,6 +6,10 @@ class LinkedList {
         return this;
     }
 
+    method Alien firstAlien(){
+        return head.getAlien();
+    }
+
     method void add(Alien newAlien) {
         var Node newNode;
         var Node current;
@@ -96,6 +100,21 @@ class LinkedList {
             }
         }
         return false;
+    }
+
+    method Alien getNextAlien(Alien alien){
+        var Node current,tempNode;   
+
+        let current = head;
+        while (~(current.getNext() = null )) {
+            if (current.getAlien() = alien){
+                let tempNode = current.getNext();
+                return tempNode.getAlien();
+            }
+            let tempNode = current.getAlien();
+            let current = current.getNext();
+        }
+        return head.getAlien();
     }
 
 

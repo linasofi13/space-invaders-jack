@@ -1,13 +1,13 @@
 class JuegoNave{
-
     field Nave player;
     field int totalAliens;
     field int playerShootsFlag;  //a flag that tells us if there is a player's bullet on the screen at this time 
     field int alienShootsFlag;  //a flag that tells us if there is a aliens's bullet on the screen at this time 
     field int pointsPlayer; // how many aliens player has killed
     field int livesPlayer;
-    field int sizeAlien; // when shooting, comparing to x,y position of alien, but need to also check surroudings of that x,y since alien is bigger than a x,y position 
     field LinkedList aliens;
+    field Alien devuelta;
+    field Shoot alienShoots; 
 
     constructor JuegoNave new(){
         let player = Nave.new();
@@ -16,7 +16,6 @@ class JuegoNave{
         let alienShootsFlag = 0; 
         let pointsPlayer = 0;
         let livesPlayer = 5;
-        let sizeAlien = 5; // testing the size of the alien for the shoot to cover all its body
         do generateAliens();
         return this;
     }
@@ -69,7 +68,10 @@ class JuegoNave{
 	}
 
     method void shootPathAlien (Shoot shoot){
-        if (shoot.getY() > 243){
+        if (shoot.getY() > 240){
+            if (totalAliens > 2){
+                let devuelta = aliens.getNextAlien(devuelta);
+            }
             let alienShootsFlag = 0;
 			do shoot.dispose();
         }
@@ -77,20 +79,44 @@ class JuegoNave{
     }
 
 
+    method void playerWin(){
+        do Screen.clearScreen();
+        do Output.moveCursor(0, 20);
+        do Output.printString(" -- You win --");
+        do Output.moveCursor(10, 20);
+        do Output.printString("--> Your points: ");
+        do Output.printInt(pointsPlayer);
+        do Output.moveCursor(20, 0);
+        do Output.printString("Made by Mauricio Carrillo, Lina Ballesteros & Valentina Giraldo");
+        return;
+    }
+
+    method void printPoints(){
+        let pointsPlayer = pointsPlayer + 1;
+        do Output.moveCursor(0,0);
+        do Output.printString("Points: ");
+        do Output.printInt(pointsPlayer);
+        return;
+    }
+
+    method void printLives(){
+        do Output.moveCursor(0,50);
+        do Output.printString("Lives Left: ");
+		do Output.printInt(livesPlayer);
+        return;
+    }
+
 
     method void run() {
         var char tecla;
         var boolean exit;
-        var Shoot playerShoots; // por q un disparo instanciado es playerShoots y no Shoot jsjjs (causa confusion)
-        var Shoot alienShoots;  
-        var Alien devuelta;  //This is the alien that is shooting at this moment 
+        var Shoot playerShoots; 
+           
         let exit = false;
+        let devuelta = aliens.firstAlien(); 
 
-        do Output.moveCursor(0,0);
-		do Output.printString("Points: ");
-		do Output.printInt(pointsPlayer);
-		do Output.printString("      Lives Left: ");
-		do Output.printInt(livesPlayer);
+        do printPoints();
+        do printLives();
 
         while (~exit){
             while (tecla = 0) {
@@ -99,33 +125,36 @@ class JuegoNave{
                     do playerShoots.shoot(1); //1 is for player 2 is for aliens 
                     do shootPathPlayer(playerShoots);
                     if (aliens.shootColisionAlien(playerShoots)){
+                        let totalAliens = totalAliens - 1;
                         let playerShootsFlag = 0;
+                        do printPoints();
                     }
-                    //let colisionAlien = shootColisionAlien(playerShoots); // method to check if players shoot hits alien
-                    //if(colisionAlien = 1){
-                      //  do playerShoot.dispose();
-                        // let playerShootFlag = 0;
-                    //}
+                }
+                if(totalAliens = 0){
+                    do playerWin();
+                    do Sys.wait(200);
+                    let exit = true;
+                }
+                if (alienShootsFlag = 0){
+                    if (totalAliens > 0){
+                        do devuelta.createShoot();
+                        let alienShootsFlag = 1;
+                    }
                 }
 
-                /*
-                if (alienShootsFlag = 0){
-                    do devuelta.createShoot();
-                    let alienShootsFlag = 1;
-                }
                 if (alienShootsFlag = 1 ){
                     let alienShoots = devuelta.getShoot();
-                    do alienShoots.shoot(2);    //1 is for player 2 is for aliens 
+                    do alienShoots.shoot(2); //1 is for player 2 is for aliens 
                     do shootPathAlien(alienShoots);
-                   
-                }
-                */
+                }              
                 let tecla = Keyboard.keyPressed();
                 do aliens.moverAlien(); 
             }
+            
             if (tecla = 81) { 
                 let exit = true; //Q  QUIT
             }
+            
             if ((playerShootsFlag = 0) & (tecla = 32) ){ 
                 do player.createShoot();
                 let playerShootsFlag = 1;
@@ -141,14 +170,21 @@ class JuegoNave{
                     do playerShoots.shoot(1); //1 is for player 2 is for aliens 
                     do shootPathPlayer(playerShoots);
                     if (aliens.shootColisionAlien(playerShoots)){
+                        let totalAliens = totalAliens - 1;
                         let playerShootsFlag = 0;
+                        do printPoints(); 
                     }
                 }
-                
-                /*
+                if(totalAliens = 0){
+                    do playerWin();
+                    do Sys.wait(200);
+                    let exit = true;
+                }
                 if (alienShootsFlag = 0){
-                    do devuelta.createShoot();
-                    let alienShootsFlag = 1;
+                    if (totalAliens > 0){
+                        do devuelta.createShoot();
+                        let alienShootsFlag = 1;
+                    }
                 }
 
                 if (alienShootsFlag = 1 ){
@@ -156,8 +192,8 @@ class JuegoNave{
                     do alienShoots.shoot(2); //1 is for player 2 is for aliens 
                     do shootPathAlien(alienShoots);
                 }
-                */
             }
+            
         }
         return;
     }

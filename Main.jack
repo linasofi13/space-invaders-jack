@@ -5,12 +5,8 @@ class Main {
         var JuegoNave game;
 
         let game = JuegoNave.new();
-        do Output.moveCursor(0, 0);
+        do Output.moveCursor(0, 25);
         do Output.printString("SPACE INVADERS");
-
-        do Output.moveCursor(0, 0);
-        do Output.printString("SPACE INVADERS");
-        
         do game.run();
         do game.dispose();
 

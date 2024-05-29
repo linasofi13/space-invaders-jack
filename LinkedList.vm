@@ -6,6 +6,12 @@ push constant 0
 pop this 0
 push pointer 0
 return
+function LinkedList.firstAlien 0
+push argument 0
+pop pointer 0
+push this 0
+call Node.getAlien 1
+return
 function LinkedList.add 2
 push argument 0
 pop pointer 0
@@ -239,4 +245,42 @@ goto WHILE_EXP0
 label WHILE_END0
 label IF_FALSE0
 push constant 0
+return
+function LinkedList.getNextAlien 2
+push argument 0
+pop pointer 0
+push this 0
+pop local 0
+label WHILE_EXP0
+push local 0
+call Node.getNext 1
+push constant 0
+eq
+not
+not
+if-goto WHILE_END0
+push local 0
+call Node.getAlien 1
+push argument 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+call Node.getNext 1
+pop local 1
+push local 1
+call Node.getAlien 1
+return
+label IF_FALSE0
+push local 0
+call Node.getAlien 1
+pop local 1
+push local 0
+call Node.getNext 1
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push this 0
+call Node.getAlien 1
 return
