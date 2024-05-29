@@ -13,7 +13,7 @@ pop this 3
 push constant 1
 neg
 pop this 4
-push constant 200
+push constant 11
 pop this 5
 push constant 50
 pop this 9
@@ -681,10 +681,23 @@ push this 5
 push constant 1
 sub
 pop this 5
+push this 5
+push constant 10
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push constant 0
 push constant 50
 call Output.moveCursor 2
 pop temp 0
+goto IF_END0
+label IF_FALSE0
+push constant 0
+push constant 51
+call Output.moveCursor 2
+pop temp 0
+label IF_END0
 push constant 12
 call String.new 1
 push constant 76
@@ -926,8 +939,7 @@ push constant 200
 call Sys.wait 1
 pop temp 0
 push constant 0
-not
-pop local 1
+return
 label IF_FALSE2
 push this 3
 push constant 0
@@ -979,9 +991,11 @@ label IF_TRUE6
 push pointer 0
 call JuegoNave.playerLoose 1
 pop temp 0
+push constant 200
+call Sys.wait 1
+pop temp 0
 push constant 0
-not
-pop local 1
+return
 label IF_FALSE6
 call Keyboard.keyPressed 0
 pop local 0
@@ -990,16 +1004,44 @@ call LinkedList.moverAlien 1
 pop temp 0
 goto WHILE_EXP1
 label WHILE_END1
-push local 0
-push constant 81
+push this 5
+push constant 0
 eq
 if-goto IF_TRUE7
 goto IF_FALSE7
 label IF_TRUE7
+push pointer 0
+call JuegoNave.playerLoose 1
+pop temp 0
+push constant 200
+call Sys.wait 1
+pop temp 0
+push constant 0
+return
+label IF_FALSE7
+push local 0
+push constant 81
+eq
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
 push constant 0
 not
 pop local 1
-label IF_FALSE7
+label IF_FALSE8
+push this 5
+push constant 0
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push pointer 0
+call JuegoNave.playerLoose 1
+pop temp 0
+push constant 0
+not
+pop local 1
+label IF_FALSE9
 push this 2
 push constant 0
 eq
@@ -1007,15 +1049,15 @@ push local 0
 push constant 32
 eq
 and
-if-goto IF_TRUE8
-goto IF_FALSE8
-label IF_TRUE8
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
 push this 0
 call Nave.createShoot 1
 pop temp 0
 push constant 1
 pop this 2
-label IF_FALSE8
+label IF_FALSE10
 label WHILE_EXP2
 push local 0
 push constant 0
@@ -1035,9 +1077,9 @@ pop temp 0
 push this 2
 push constant 1
 eq
-if-goto IF_TRUE9
-goto IF_FALSE9
-label IF_TRUE9
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
 push this 0
 call Nave.getShoot 1
 pop local 2
@@ -1052,9 +1094,9 @@ pop temp 0
 push this 6
 push local 2
 call LinkedList.shootColisionAlien 2
-if-goto IF_TRUE10
-goto IF_FALSE10
-label IF_TRUE10
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
 push this 1
 push constant 1
 sub
@@ -1064,14 +1106,14 @@ pop this 2
 push pointer 0
 call JuegoNave.printPoints 1
 pop temp 0
-label IF_FALSE10
-label IF_FALSE9
+label IF_FALSE12
+label IF_FALSE11
 push this 1
 push constant 0
 eq
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
 push pointer 0
 call JuegoNave.playerWin 1
 pop temp 0
@@ -1079,34 +1121,33 @@ push constant 200
 call Sys.wait 1
 pop temp 0
 push constant 0
-not
-pop local 1
-label IF_FALSE11
+return
+label IF_FALSE13
 push this 3
 push constant 0
 eq
-if-goto IF_TRUE12
-goto IF_FALSE12
-label IF_TRUE12
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
 push this 1
 push constant 0
 gt
-if-goto IF_TRUE13
-goto IF_FALSE13
-label IF_TRUE13
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
 push this 7
 call Alien.createShoot 1
 pop temp 0
 push constant 1
 pop this 3
-label IF_FALSE13
-label IF_FALSE12
+label IF_FALSE15
+label IF_FALSE14
 push this 3
 push constant 1
 eq
-if-goto IF_TRUE14
-goto IF_FALSE14
-label IF_TRUE14
+if-goto IF_TRUE16
+goto IF_FALSE16
+label IF_TRUE16
 push this 7
 call Alien.getShoot 1
 pop this 8
@@ -1122,20 +1163,22 @@ push pointer 0
 push this 8
 call JuegoNave.naveCollision 2
 pop temp 0
-label IF_FALSE14
+label IF_FALSE16
 push this 5
 push constant 0
 eq
-if-goto IF_TRUE15
-goto IF_FALSE15
-label IF_TRUE15
+if-goto IF_TRUE17
+goto IF_FALSE17
+label IF_TRUE17
 push pointer 0
 call JuegoNave.playerLoose 1
 pop temp 0
+push constant 200
+call Sys.wait 1
+pop temp 0
 push constant 0
-not
-pop local 1
-label IF_FALSE15
+return
+label IF_FALSE17
 goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0

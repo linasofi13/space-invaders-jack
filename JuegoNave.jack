@@ -116,7 +116,11 @@ class JuegoNave{
 
     method void printLives(){
         let livesPlayer = livesPlayer - 1;
-        do Output.moveCursor(0,50);
+        if (livesPlayer = 10){
+           do Output.moveCursor(0,50); 
+        }else{
+            do Output.moveCursor(0,51);
+        }
         do Output.printString("Lives Left: ");
 		do Output.printInt(livesPlayer);
         return;
@@ -184,7 +188,7 @@ class JuegoNave{
                 if(totalAliens = 0){
                     do playerWin();
                     do Sys.wait(200);
-                    let exit = true;
+                    return;
                 }
                 if (alienShootsFlag = 0){
                     if (totalAliens > 0){
@@ -201,15 +205,26 @@ class JuegoNave{
                 }    
                 if (livesPlayer = 0){
                     do playerLoose();
-                    let exit = true;
+                    do Sys.wait(200);
+                    return;
                 }          
                 let tecla = Keyboard.keyPressed();
                 do aliens.moverAlien(); 
             }
             
+            if (livesPlayer = 0){
+                do playerLoose();
+                do Sys.wait(200);
+                return;
+            }     
             if (tecla = 81) { 
                 let exit = true; //Q  QUIT
             }
+            
+            if (livesPlayer = 0){
+                    do playerLoose();
+                    let exit = true;
+            }         
             
             if ((playerShootsFlag = 0) & (tecla = 32) ){ 
                 do player.createShoot();
@@ -234,7 +249,7 @@ class JuegoNave{
                 if(totalAliens = 0){
                     do playerWin();
                     do Sys.wait(200);
-                    let exit = true;
+                    return;
                 }
                 if (alienShootsFlag = 0){
                     if (totalAliens > 0){
@@ -249,10 +264,12 @@ class JuegoNave{
                     do shootPathAlien(alienShoots);
                     do naveCollision(alienShoots);
                 }
+
                 if (livesPlayer = 0){
                     do playerLoose();
-                    let exit = true;
-                }
+                    do Sys.wait(200);
+                    return;
+                }  
             }
             
         }

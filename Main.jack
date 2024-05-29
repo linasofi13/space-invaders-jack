@@ -9,7 +9,6 @@ class Main {
         do Output.printString("SPACE INVADERS");
         do game.run();
         do game.dispose();
-
         return;
     }
 }
