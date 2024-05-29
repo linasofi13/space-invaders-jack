@@ -8,14 +8,17 @@ class JuegoNave{
     field LinkedList aliens;
     field Alien devuelta;
     field Shoot alienShoots; 
+    field int width_ship_x, height_ship_y;
 
     constructor JuegoNave new(){
         let player = Nave.new();
         let totalAliens = 25;
         let playerShootsFlag = 0;
         let alienShootsFlag = 0; 
-        let pointsPlayer = 0;
-        let livesPlayer = 5;
+        let pointsPlayer = -1;
+        let livesPlayer = 11;
+        let width_ship_x = 50;
+        let height_ship_y = 10;
         do generateAliens();
         return this;
     }
@@ -91,6 +94,18 @@ class JuegoNave{
         return;
     }
 
+    method void playerLoose(){
+        do Screen.clearScreen();
+        do Output.moveCursor(0, 20);
+        do Output.printString(" -- You were Invaded... --");
+        do Output.moveCursor(10, 20);
+        do Output.printString("--> Your points: ");
+        do Output.printInt(pointsPlayer);
+        do Output.moveCursor(20, 0);
+        do Output.printString("Made by Mauricio Carrillo, Lina Ballesteros & Valentina Giraldo");
+        return;
+    }
+
     method void printPoints(){
         let pointsPlayer = pointsPlayer + 1;
         do Output.moveCursor(0,0);
@@ -100,11 +115,47 @@ class JuegoNave{
     }
 
     method void printLives(){
+        let livesPlayer = livesPlayer - 1;
         do Output.moveCursor(0,50);
         do Output.printString("Lives Left: ");
 		do Output.printInt(livesPlayer);
         return;
     }
+
+
+    method int naveCollision(Shoot shoot){ // ver si la bala colisionó con la nave comparando su posición
+
+        var int nave_x;
+        var int nave_y;
+		var int shoot_x;
+        var int shoot_y;
+		var int shoot_size;
+		var int nave_size;
+
+		let nave_x = player.getX();
+		let nave_y = player.getY();
+		let shoot_x = shoot.getX();
+		let shoot_y = shoot.getY();
+		let shoot_size = 4;
+
+        if (alienShootsFlag = 1){
+            if ( ((shoot_x > nave_x) & (shoot_y > nave_y) & (shoot_x < (nave_x+ width_ship_x)) & (shoot_y < (nave_y+height_ship_y)))				|
+            (((shoot_x+shoot_size) > nave_x) & (shoot_y > nave_y) & ((shoot_x+shoot_size) < (nave_x + width_ship_x)) & (shoot_y < (nave_y+height_ship_y))) 	|
+            ((shoot_x > nave_x) & ((shoot_y+shoot_size) > nave_y) & (shoot_x < (nave_x+width_ship_x)) & ((shoot_y+shoot_size) < (nave_y+height_ship_y)))		|
+            (((shoot_x+shoot_size) > nave_x) & ((shoot_y+shoot_size) > nave_y) & ((shoot_x+shoot_size) < (nave_x+width_ship_x)) & ((shoot_y+shoot_size) < (nave_y+height_ship_y))) )  {
+
+            do shoot.dispose();
+            do player.draw();
+            let alienShootsFlag = 0;
+
+            do printLives();
+            }
+            
+        }
+        return 0;
+
+    }
+
 
 
     method void run() {
@@ -146,7 +197,12 @@ class JuegoNave{
                     let alienShoots = devuelta.getShoot();
                     do alienShoots.shoot(2); //1 is for player 2 is for aliens 
                     do shootPathAlien(alienShoots);
-                }              
+                    do naveCollision(alienShoots);
+                }    
+                if (livesPlayer = 0){
+                    do playerLoose();
+                    let exit = true;
+                }          
                 let tecla = Keyboard.keyPressed();
                 do aliens.moverAlien(); 
             }
@@ -191,6 +247,11 @@ class JuegoNave{
                     let alienShoots = devuelta.getShoot();
                     do alienShoots.shoot(2); //1 is for player 2 is for aliens 
                     do shootPathAlien(alienShoots);
+                    do naveCollision(alienShoots);
+                }
+                if (livesPlayer = 0){
+                    do playerLoose();
+                    let exit = true;
                 }
             }
             

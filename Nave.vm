@@ -23,6 +23,16 @@ call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
+function Nave.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Nave.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
 function Nave.draw 0
 push argument 0
 pop pointer 0

@@ -1,5 +1,5 @@
 function JuegoNave.new 0
-push constant 9
+push constant 11
 call Memory.alloc 1
 pop pointer 0
 call Nave.new 0
@@ -10,10 +10,15 @@ push constant 0
 pop this 2
 push constant 0
 pop this 3
-push constant 0
+push constant 1
+neg
 pop this 4
-push constant 5
+push constant 200
 pop this 5
+push constant 50
+pop this 9
+push constant 10
+pop this 10
 push pointer 0
 call JuegoNave.generateAliens 1
 pop temp 0
@@ -387,9 +392,259 @@ call Output.printString 1
 pop temp 0
 push constant 0
 return
+function JuegoNave.playerLoose 0
+push argument 0
+pop pointer 0
+call Screen.clearScreen 0
+pop temp 0
+push constant 0
+push constant 20
+call Output.moveCursor 2
+pop temp 0
+push constant 26
+call String.new 1
+push constant 32
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 89
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 119
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 118
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 46
+call String.appendChar 2
+push constant 46
+call String.appendChar 2
+push constant 46
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 10
+push constant 20
+call Output.moveCursor 2
+pop temp 0
+push constant 17
+call String.new 1
+push constant 45
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 62
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 89
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push this 4
+call Output.printInt 1
+pop temp 0
+push constant 20
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push constant 63
+call String.new 1
+push constant 77
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 98
+call String.appendChar 2
+push constant 121
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 77
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 99
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 67
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 44
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 66
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 38
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 86
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 71
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 100
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 0
+return
 function JuegoNave.printPoints 0
 push argument 0
 pop pointer 0
+push this 4
+push constant 1
+add
+pop this 4
 push constant 0
 push constant 0
 call Output.moveCursor 2
@@ -422,6 +677,10 @@ return
 function JuegoNave.printLives 0
 push argument 0
 pop pointer 0
+push this 5
+push constant 1
+sub
+pop this 5
 push constant 0
 push constant 50
 call Output.moveCursor 2
@@ -457,6 +716,142 @@ pop temp 0
 push this 5
 call Output.printInt 1
 pop temp 0
+push constant 0
+return
+function JuegoNave.naveCollision 6
+push argument 0
+pop pointer 0
+push this 0
+call Nave.getX 1
+pop local 0
+push this 0
+call Nave.getY 1
+pop local 1
+push argument 1
+call Shoot.getX 1
+pop local 2
+push argument 1
+call Shoot.getY 1
+pop local 3
+push constant 4
+pop local 4
+push this 3
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 2
+push local 0
+gt
+push local 3
+push local 1
+gt
+and
+push local 2
+push local 0
+push this 9
+add
+lt
+and
+push local 3
+push local 1
+push this 10
+add
+lt
+and
+push local 2
+push local 4
+add
+push local 0
+gt
+push local 3
+push local 1
+gt
+and
+push local 2
+push local 4
+add
+push local 0
+push this 9
+add
+lt
+and
+push local 3
+push local 1
+push this 10
+add
+lt
+and
+or
+push local 2
+push local 0
+gt
+push local 3
+push local 4
+add
+push local 1
+gt
+and
+push local 2
+push local 0
+push this 9
+add
+lt
+and
+push local 3
+push local 4
+add
+push local 1
+push this 10
+add
+lt
+and
+or
+push local 2
+push local 4
+add
+push local 0
+gt
+push local 3
+push local 4
+add
+push local 1
+gt
+and
+push local 2
+push local 4
+add
+push local 0
+push this 9
+add
+lt
+and
+push local 3
+push local 4
+add
+push local 1
+push this 10
+add
+lt
+and
+or
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+call Shoot.dispose 1
+pop temp 0
+push this 0
+call Nave.draw 1
+pop temp 0
+push constant 0
+pop this 3
+push pointer 0
+call JuegoNave.printLives 1
+pop temp 0
+label IF_FALSE1
+label IF_FALSE0
 push constant 0
 return
 function JuegoNave.run 3
@@ -511,10 +906,6 @@ push this 1
 push constant 1
 sub
 pop this 1
-push this 4
-push constant 1
-add
-pop this 4
 push constant 0
 pop this 2
 push pointer 0
@@ -574,7 +965,24 @@ push pointer 0
 push this 8
 call JuegoNave.shootPathAlien 2
 pop temp 0
+push pointer 0
+push this 8
+call JuegoNave.naveCollision 2
+pop temp 0
 label IF_FALSE5
+push this 5
+push constant 0
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push pointer 0
+call JuegoNave.playerLoose 1
+pop temp 0
+push constant 0
+not
+pop local 1
+label IF_FALSE6
 call Keyboard.keyPressed 0
 pop local 0
 push this 6
@@ -585,13 +993,13 @@ label WHILE_END1
 push local 0
 push constant 81
 eq
-if-goto IF_TRUE6
-goto IF_FALSE6
-label IF_TRUE6
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
 push constant 0
 not
 pop local 1
-label IF_FALSE6
+label IF_FALSE7
 push this 2
 push constant 0
 eq
@@ -599,15 +1007,15 @@ push local 0
 push constant 32
 eq
 and
-if-goto IF_TRUE7
-goto IF_FALSE7
-label IF_TRUE7
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
 push this 0
 call Nave.createShoot 1
 pop temp 0
 push constant 1
 pop this 2
-label IF_FALSE7
+label IF_FALSE8
 label WHILE_EXP2
 push local 0
 push constant 0
@@ -627,9 +1035,9 @@ pop temp 0
 push this 2
 push constant 1
 eq
-if-goto IF_TRUE8
-goto IF_FALSE8
-label IF_TRUE8
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
 push this 0
 call Nave.getShoot 1
 pop local 2
@@ -644,30 +1052,26 @@ pop temp 0
 push this 6
 push local 2
 call LinkedList.shootColisionAlien 2
-if-goto IF_TRUE9
-goto IF_FALSE9
-label IF_TRUE9
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
 push this 1
 push constant 1
 sub
 pop this 1
-push this 4
-push constant 1
-add
-pop this 4
 push constant 0
 pop this 2
 push pointer 0
 call JuegoNave.printPoints 1
 pop temp 0
+label IF_FALSE10
 label IF_FALSE9
-label IF_FALSE8
 push this 1
 push constant 0
 eq
-if-goto IF_TRUE10
-goto IF_FALSE10
-label IF_TRUE10
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
 push pointer 0
 call JuegoNave.playerWin 1
 pop temp 0
@@ -677,32 +1081,32 @@ pop temp 0
 push constant 0
 not
 pop local 1
-label IF_FALSE10
+label IF_FALSE11
 push this 3
 push constant 0
 eq
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
-push this 1
-push constant 0
-gt
 if-goto IF_TRUE12
 goto IF_FALSE12
 label IF_TRUE12
+push this 1
+push constant 0
+gt
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
 push this 7
 call Alien.createShoot 1
 pop temp 0
 push constant 1
 pop this 3
+label IF_FALSE13
 label IF_FALSE12
-label IF_FALSE11
 push this 3
 push constant 1
 eq
-if-goto IF_TRUE13
-goto IF_FALSE13
-label IF_TRUE13
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
 push this 7
 call Alien.getShoot 1
 pop this 8
@@ -714,7 +1118,24 @@ push pointer 0
 push this 8
 call JuegoNave.shootPathAlien 2
 pop temp 0
-label IF_FALSE13
+push pointer 0
+push this 8
+call JuegoNave.naveCollision 2
+pop temp 0
+label IF_FALSE14
+push this 5
+push constant 0
+eq
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
+push pointer 0
+call JuegoNave.playerLoose 1
+pop temp 0
+push constant 0
+not
+pop local 1
+label IF_FALSE15
 goto WHILE_EXP2
 label WHILE_END2
 goto WHILE_EXP0
