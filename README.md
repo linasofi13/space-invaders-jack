@@ -3,15 +3,15 @@
 Implementation of the retro video game "Space Invaders" in the Jack programming language, using the Nand to Tetris software for the Computer Organization course taught by Professor Edison Valencia at EAFIT University.
 
 ## Table of Contents
-- [📖 Introduction](#introduction)
-- [✨ Features](#features)
-- [⚙️ Installation](#installation)
-- [🎮 Usage](#usage)
-- [🛠️ Classes and Methods](#classes-and-methods)
-- [🎯 Game Controls](#game-controls)
-- [🏆 Game Objective](#game-objective)
-- [🎥 YouTube Video](#youtube-video)
-- [👥 Contributors](#contributors)
+- [📖 Introduction](#-introduction)
+- [✨ Features](#-features)
+- [⚙️ Installation](#-installation)
+- [🎮 Usage](#-usage)
+- [🛠️ Classes and Methods](#-classes-and-methods)
+- [🎯 Game Controls](#-game-controls)
+- [🏆 Game Objective](#-game-objective)
+- [🎥 YouTube Video](#-youtube-video)
+- [👥 Contributors](#-contributors)
 
 ## 📖 Introduction
 This project is a modern take on the classic "Space Invaders" arcade game, developed in the Jack programming language as part of the Nand to Tetris curriculum. The game was created for the Computer Organization course at EAFIT University, under the guidance of Professor Edison Valencia.
